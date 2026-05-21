@@ -19,7 +19,7 @@ app.secret_key = os.environ.get("SECRET_KEY", "change-me-in-production")
 SUPABASE_URL    = os.environ.get("SUPABASE_URL", "")
 SUPABASE_KEY    = os.environ.get("SUPABASE_KEY", "")   # service-role key (server-side only)
 SUPABASE_BUCKET = os.environ.get("SUPABASE_BUCKET", "layosam-projects")
-ADMIN_PASSWORD  = os.environ.get("ADMIN_PASSWORD", "layosam2025")
+ADMIN_PASSWORD  = os.environ.get("ADMIN_PASSWORD", "layosam2026")
 
 supabase: Client = create_client(SUPABASE_URL, SUPABASE_KEY) if SUPABASE_URL else None
 
@@ -196,7 +196,7 @@ def admin_upload():
                     "featured": featured,
                     "created_at": datetime.utcnow().isoformat()
                 }).execute()
-                flash(f"Project "{title}" uploaded successfully!", "success")
+                flash(f'Project "{title}" uploaded successfully!', "success")
             except Exception as e:
                 app.logger.error(f"Insert error: {e}")
                 flash("Database insert failed. Check Supabase config.", "error")
