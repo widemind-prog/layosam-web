@@ -187,19 +187,74 @@
   .form-row{grid-template-columns:1fr;}
   .admin-main{padding:24px 16px 80px;}
 }
+
 @media(prefers-color-scheme:light){
+  /* ── Backgrounds ── */
   .admin-wrap,.admin-login-wrap{background:#f5f0e8;}
-  .admin-header{background:rgba(245,240,232,0.96);border-bottom:1px solid rgba(196,127,0,0.18);}
-  .admin-header-brand{color:var(--volt);}
-  .admin-stat,.admin-proj-card,.admin-form,.admin-login-box{background:#faf7f0;border-color:rgba(196,127,0,0.12);}
+  .admin-header{background:rgba(245,240,232,0.96);border-bottom:1px solid rgba(196,127,0,0.20);}
+
+  /* ── Admin header brand — base color:var(--volt) already correct ── */
+  /* span uses var(--muted) which becomes #4a4535 — good contrast ✓ */
+
+  /* ── Nav links ── */
+  .admin-nav-links a{color:#4a4535;}
+  .admin-nav-links a:hover,.admin-nav-links a.active{color:var(--volt);background:rgba(196,127,0,0.08);}
+  .admin-logout{color:#4a4535;border-color:rgba(196,127,0,0.22);}
+  .admin-logout:hover{color:#9a1010;border-color:#b41414;background:rgba(180,20,20,0.07);}
+
+  /* ── Stat cards ── */
+  .admin-stat{background:#faf7f0;border-color:rgba(196,127,0,0.14);}
+  /* .admin-stat-n uses var(--volt) ✓  .admin-stat-l uses var(--muted)=#4a4535 ✓ */
+
+  /* ── Project cards ── */
+  .admin-proj-card{background:#faf7f0;border-color:rgba(196,127,0,0.14);}
+  .admin-proj-card:hover{border-color:rgba(196,127,0,0.35);}
+  .admin-proj-img,.admin-proj-img-ph{background:#ede8dc;}
+  /* base uses color:#fff — must override */
   .admin-proj-title{color:#1c1a14;}
-  .form-group input,.form-group select,.form-group textarea{background:#f0ead8;border-color:rgba(196,127,0,0.15);color:#1c1a14;}
-  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--volt);}
-  .admin-btn-edit{background:rgba(196,127,0,0.08);border-color:rgba(196,127,0,0.2);color:var(--volt);}
+  /* .admin-proj-meta uses var(--muted)=#4a4535 ✓  span uses var(--volt) ✓ */
+
+  /* ── Form ── */
+  .admin-form{background:#faf7f0;border-color:rgba(196,127,0,0.12);}
+  /* label uses var(--muted)=#4a4535 ✓ */
+  .form-group input[type=text],
+  .form-group input[type=password],
+  .form-group select,
+  .form-group textarea{
+    background:#ede8dc;
+    border-color:rgba(196,127,0,0.18);
+    color:#1c1a14;
+  }
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus{border-color:var(--volt);box-shadow:0 0 0 3px rgba(196,127,0,0.10);}
+  .form-group select option{background:#faf7f0;color:#1c1a14;}
+  .toggle-row label{color:#1c1a14;}
+
+  /* ── File drop ── */
+  .file-drop{border-color:rgba(196,127,0,0.28);background:rgba(196,127,0,0.04);}
+  .file-drop:hover,.file-drop.dragover{border-color:var(--volt);background:rgba(196,127,0,0.08);}
+  /* .file-drop-lbl uses var(--muted)=#4a4535 ✓  strong uses var(--volt) ✓ */
+
+  /* ── Buttons ── */
+  .admin-btn-edit{background:rgba(196,127,0,0.09);border-color:rgba(196,127,0,0.25);color:var(--volt);}
   .admin-btn-edit:hover{background:var(--volt);color:#fff;}
-  .file-drop{border-color:rgba(196,127,0,0.25);background:rgba(196,127,0,0.04);}
-  .admin-section-hd{border-bottom-color:rgba(196,127,0,0.15);}
+  /* .admin-btn-del red — stays legible on light bg ✓ */
+  .admin-add-btn{background:var(--volt);color:#fff;}
+  .admin-add-btn:hover{opacity:0.88;}
+
+  /* ── Section header ── */
+  .admin-section-hd{border-bottom-color:rgba(196,127,0,0.18);}
+  /* base uses color:#fff — must override */
   .admin-section-hd h2{color:#1c1a14;}
-  .admin-add-btn{color:#fff;}
+
+  /* ── Login box ── */
+  .admin-login-box{background:#faf7f0;border-color:rgba(196,127,0,0.12);}
+  /* base uses color:#fff — must override */
   .admin-login-title{color:#1c1a14;}
+  /* .admin-login-sub uses var(--muted)=#4a4535 ✓ */
+  .admin-login-err{background:rgba(180,20,20,0.08);border-color:#b41414;color:#8a0e0e;}
+
+  /* ── Featured badge ── */
+  /* color:var(--volt) ✓  background var(--volt-dim) on #faf7f0 — fine ✓ */
 }
