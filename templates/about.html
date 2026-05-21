@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}About Layosam – 10+ Years of Solar & Electrical in Ibadan{% endblock %}
+{% block meta_desc %}Learn about Layosam Electrical Engineering — Ibadan's trusted solar installation and electrical engineering team with over 10 years of hands-on experience.{% endblock %}
+
+{% block content %}
+<!-- PAGE HERO -->
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-content rev">
+    <span class="page-eyebrow">// ABOUT LAYOSAM</span>
+    <h1>Built on <span>Trust</span><br>&amp; Real Work</h1>
+    <p>Over a decade of solar installations, house wiring and electrical engineering in Ibadan — one honest job at a time.</p>
+  </div>
+</div>
+
+<div class="avail-bar">
+  <span class="avail-dot"></span>
+  <span><strong>Available now</strong> &nbsp;·&nbsp; <a href="tel:+2348106690594">08106690594</a> &nbsp;·&nbsp; Free inspection for new customers</span>
+</div>
+
+<!-- STORY -->
+<section class="bg-dark rev">
+  <span class="sec-eyebrow">// OUR STORY</span>
+  <h2 class="st">Who We <span>Are</span></h2>
+  <p class="sec-sub">Layosam is an Ibadan-based electrical engineering and solar installation company serving homes, offices and businesses across Oyo State.</p>
+
+  <div style="display:grid;grid-template-columns:1fr;gap:28px;max-width:680px;">
+    <div style="background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-left:3px solid var(--volt);border-radius:var(--r);padding:24px 20px;">
+      <div style="font-size:22px;margin-bottom:10px;">⚡</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:19px;color:#fff;letter-spacing:.5px;margin-bottom:8px;">10+ Years on the Ground</h3>
+      <p style="font-size:13.5px;color:var(--muted);line-height:1.8;">Since 2014, we have been completing electrical and solar jobs across Ibadan. Every year, we refine our craft, upgrade our tools and expand our knowledge — especially in solar technology.</p>
+    </div>
+    <div style="background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-left:3px solid var(--wa);border-radius:var(--r);padding:24px 20px;">
+      <div style="font-size:22px;margin-bottom:10px;">☀️</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:19px;color:#fff;letter-spacing:.5px;margin-bottom:8px;">Solar Is Our Core</h3>
+      <p style="font-size:13.5px;color:var(--muted);line-height:1.8;">Solar installation is what we are most known for. From properly sizing your system to mounting panels neatly and programming your inverter, we handle every step. No rushed jobs, no shortcuts.</p>
+    </div>
+    <div style="background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-left:3px solid var(--volt);border-radius:var(--r);padding:24px 20px;">
+      <div style="font-size:22px;margin-bottom:10px;">🤝</div>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:19px;color:#fff;letter-spacing:.5px;margin-bottom:8px;">Built on Referrals</h3>
+      <p style="font-size:13.5px;color:var(--muted);line-height:1.8;">Most of our new customers come from people we have already served. That tells us everything. We don't rely on aggressive marketing — we rely on doing work people are proud to refer.</p>
+    </div>
+  </div>
+</section>
+
+<!-- VALUES -->
+<section class="bg-panel rev">
+  <span class="sec-eyebrow">// HOW WE OPERATE</span>
+  <h2 class="st">Our <span>Standards</span></h2>
+  <p class="sec-sub">These are not slogans. They are how we have run every single job since day one.</p>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+    {% set values = [
+      ("💬","We Explain Everything","Before we start, we tell you exactly what we are doing and why. No technical jargon. Plain Yoruba or English — whatever you prefer."),
+      ("📋","Written Quote First","You get a clear price before work begins. No vague estimates that balloon when the job is done."),
+      ("🧹","We Leave It Clean","Our team cleans up after every job. Cables are bundled, conduits properly fixed, walls undamaged."),
+      ("📞","We Pick Up","When you call about something after a job, we answer. We don't vanish once we've collected payment."),
+      ("🔒","We Use Quality Materials","We don't substitute cheap fittings for what was agreed. The materials we recommend are what we install."),
+      ("⏰","We Respect Your Time","If we say 9am, we aim to be there at 9am. If something changes, we call ahead.")
+    ] %}
+    {% for ico, title, body in values %}
+    <div style="background:var(--panel2);border:1px solid rgba(255,255,255,0.04);border-radius:var(--r);padding:20px 16px;transition:transform .22s ease,border-color .2s;"
+         onmouseover="this.style.transform='translateY(-4px)';this.style.borderColor='var(--line)'"
+         onmouseout="this.style.transform='';this.style.borderColor=''">
+      <span style="font-size:22px;display:block;margin-bottom:10px;">{{ ico }}</span>
+      <h3 style="font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:.3px;margin-bottom:7px;">{{ title }}</h3>
+      <p style="font-size:12.5px;color:var(--muted);line-height:1.6;">{{ body }}</p>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section class="bg-dark rev">
+  <span class="sec-eyebrow">// BY THE NUMBERS</span>
+  <h2 class="st">The <span>Track Record</span></h2>
+  <p class="sec-sub">Real numbers from over a decade of consistent work across Ibadan.</p>
+  <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:500px;">
+    {% set stats = [
+      ("jobs-total","200+","Jobs Completed"),
+      ("10+","10+ Yrs","In Business"),
+      ("5★","5★","Average Rating"),
+      ("24/7","24/7","Emergency Line")
+    ] %}
+    {% for id, num, lbl in stats %}
+    <div style="background:var(--panel);border:1px solid var(--line);border-radius:var(--r);padding:28px 16px;text-align:center;">
+      <div style="font-family:'Bebas Neue',sans-serif;font-size:38px;color:var(--volt);line-height:1;margin-bottom:6px;" {% if id == 'jobs-total' %}class="jobs-total"{% endif %}>{{ num }}</div>
+      <div style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;">{{ lbl }}</div>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="bg-panel rev">
+  <div style="background:linear-gradient(135deg,#1a2400,#0f1a00);border:1px solid var(--line);border-radius:14px;padding:36px 24px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-10px;bottom:-20px;font-size:100px;opacity:0.06;transform:rotate(-15deg);">⚡</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,40px);color:var(--volt);letter-spacing:1px;margin-bottom:10px;line-height:1;">Ready to Work Together?</h2>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:24px;line-height:1.7;">Get a free inspection and honest quote. No pressure, no hidden charges.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C+I+want+to+know+more+about+Layosam." target="_blank" rel="noopener" style="width:100%;max-width:320px;">
+        {% include '_wa_icon.html' %} WhatsApp Us
+      </a>
+      <a class="btn-call" href="tel:+2348106690594" style="width:100%;max-width:320px;">📞 Call 08106690594</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

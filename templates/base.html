@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>{% block title %}Layosam – Solar Installation & Electrical Engineering in Ibadan{% endblock %}</title>
+<meta name="description" content="{% block meta_desc %}Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan. Free inspection. Call 08106690594 or WhatsApp now.{% endblock %}">
+<meta property="og:title" content="{% block og_title %}Layosam – Solar & Electrical Ibadan{% endblock %}">
+<meta property="og:description" content="Expert solar & electrical in Ibadan. Free inspection. Call 08106690594.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+{% block extra_css %}{% endblock %}
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="brand" href="{{ url_for('index') }}">
+    <div class="brand-icon">⚡</div>
+    <div>
+      <div class="brand-name">LAYOSAM</div>
+      <span class="brand-tag">IBADAN · SOLAR & ELECTRICAL</span>
+    </div>
+  </a>
+
+  <!-- desktop nav links -->
+  <div class="nav-links">
+    <a href="{{ url_for('index') }}"    {% if request.endpoint == 'index'        %}class="active"{% endif %}>Home</a>
+    <a href="{{ url_for('about') }}"    {% if request.endpoint == 'about'        %}class="active"{% endif %}>About</a>
+    <a href="{{ url_for('services') }}" {% if request.endpoint == 'services'     %}class="active"{% endif %}>Services</a>
+    <a href="{{ url_for('projects_page') }}" {% if request.endpoint == 'projects_page' %}class="active"{% endif %}>Projects</a>
+    <a href="{{ url_for('contact') }}"  {% if request.endpoint == 'contact'      %}class="active"{% endif %}>Contact</a>
+  </div>
+
+  <div class="nav-ctas">
+    <a class="nav-call" href="tel:+2348106690594">📞 08106690594</a>
+    <a class="nav-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+      {% include '_wa_icon.html' %} WhatsApp
+    </a>
+    <!-- mobile burger -->
+    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE DRAWER -->
+<div class="nav-drawer" id="nav-drawer" role="navigation">
+  <a href="{{ url_for('index') }}"          {% if request.endpoint == 'index'        %}class="active"{% endif %}>🏠 Home</a>
+  <a href="{{ url_for('about') }}"          {% if request.endpoint == 'about'        %}class="active"{% endif %}>👋 About Us</a>
+  <a href="{{ url_for('services') }}"       {% if request.endpoint == 'services'     %}class="active"{% endif %}>⚡ Services</a>
+  <a href="{{ url_for('projects_page') }}"  {% if request.endpoint == 'projects_page'%}class="active"{% endif %}>📸 Projects</a>
+  <a href="{{ url_for('contact') }}"        {% if request.endpoint == 'contact'      %}class="active"{% endif %}>📞 Contact</a>
+  <div class="nav-drawer-ctas">
+    <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+      {% include '_wa_icon.html' %} WhatsApp Us
+    </a>
+    <a class="btn-call" href="tel:+2348106690594">📞 Call 08106690594</a>
+  </div>
+</div>
+
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class="flash-list" style="padding:0 20px;margin:12px 0;">
+      {% for cat, msg in messages %}
+        <li class="flash-msg {{ cat }}">{{ msg }}</li>
+      {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+{% block content %}{% endblock %}
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-nav">
+    <a href="{{ url_for('index') }}">Home</a>
+    <a href="{{ url_for('about') }}">About</a>
+    <a href="{{ url_for('services') }}">Services</a>
+    <a href="{{ url_for('projects_page') }}">Projects</a>
+    <a href="{{ url_for('contact') }}">Contact</a>
+  </div>
+  <strong>LAYOSAM Electrical Engineering &amp; Solar Installation</strong><br>
+  Ibadan, Oyo State, Nigeria<br>
+  📞 <a href="tel:+2348106690594" style="color:inherit;">08106690594</a>
+  &nbsp;·&nbsp;
+  <a href="tel:+2347076240267" style="color:inherit;">07076240267</a><br><br>
+  © 2025 Layosam. All Rights Reserved.
+</footer>
+
+<!-- STICKY BAR (mobile) -->
+<div class="sticky">
+  <a class="sticky-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+    {% include '_wa_icon.html' %} WhatsApp Us
+  </a>
+  <a class="sticky-call" href="tel:+2348106690594">⚡ Call Now</a>
+</div>
+
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block extra_js %}{% endblock %}
+<!-- Umami Analytics -->
+<script defer src="https://cloud.umami.is/script.js" data-website-id="23168a8d-b7fe-4041-a68d-8d6ec63a5022"></script>
+</body>
+</html>

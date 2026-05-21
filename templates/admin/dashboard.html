@@ -1,0 +1,71 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<!-- Stats -->
+<div class="admin-stats" style="margin-bottom:28px;">
+  <div class="admin-stat">
+    <div class="admin-stat-n">{{ projects | length }}</div>
+    <div class="admin-stat-l">Total Projects</div>
+  </div>
+  <div class="admin-stat">
+    <div class="admin-stat-n">{{ projects | selectattr('featured') | list | length }}</div>
+    <div class="admin-stat-l">Featured</div>
+  </div>
+  <div class="admin-stat">
+    <div class="admin-stat-n">{{ projects | selectattr('image_url') | list | length }}</div>
+    <div class="admin-stat-l">With Photos</div>
+  </div>
+</div>
+
+<!-- Projects List -->
+<div class="admin-section-hd">
+  <h2>All Projects</h2>
+  <a href="{{ url_for('admin_upload') }}" class="admin-add-btn">+ Upload New</a>
+</div>
+
+{% if projects %}
+<div class="admin-proj-grid">
+  {% for p in projects %}
+  <div class="admin-proj-card">
+    {% if p.image_url %}
+      <img class="admin-proj-img" src="{{ p.image_url }}" alt="{{ p.title }}"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="admin-proj-img-ph" style="display:none">📸</div>
+    {% else %}
+      <div class="admin-proj-img-ph">📸</div>
+    {% endif %}
+
+    <div class="admin-proj-body">
+      <div class="admin-proj-title">{{ p.title }}</div>
+      <div class="admin-proj-meta">
+        <span>📍 {{ p.location }}</span>
+        <span>{{ p.category }}</span>
+        <span style="color:var(--muted);">{{ p.created_at[:10] if p.created_at else '—' }}</span>
+      </div>
+      {% if p.description %}
+      <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6;-webkit-line-clamp:2;display:-webkit-box;-webkit-box-orient:vertical;overflow:hidden;">{{ p.description }}</p>
+      {% endif %}
+      <div class="admin-proj-actions">
+        <a href="{{ url_for('admin_edit', project_id=p.id) }}" class="admin-btn-edit">Edit</a>
+        <form method="POST" action="{{ url_for('admin_delete', project_id=p.id) }}" class="delete-form" style="display:inline;">
+          <button type="submit" class="admin-btn-del">Delete</button>
+        </form>
+        {% if p.featured %}
+        <span class="featured-badge">⭐ Featured</span>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% else %}
+<div style="text-align:center;padding:60px 20px;">
+  <div style="font-size:48px;margin-bottom:16px;opacity:0.25;">📸</div>
+  <h3 style="font-family:'Bebas Neue',sans-serif;font-size:22px;color:#fff;letter-spacing:1px;margin-bottom:8px;">No Projects Yet</h3>
+  <p style="font-size:13px;color:var(--muted);margin-bottom:20px;">Upload your first completed project to show it on the website.</p>
+  <a href="{{ url_for('admin_upload') }}" class="admin-add-btn" style="display:inline-flex;">+ Upload First Project</a>
+</div>
+{% endif %}
+{% endblock %}

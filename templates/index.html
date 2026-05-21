@@ -1,0 +1,457 @@
+{% extends "base.html" %}
+
+{% block title %}Layosam – Solar Installation & Electrical Engineering in Ibadan | Call 08106690594{% endblock %}
+
+{% block extra_css %}
+<style>
+/* ══ HERO (index only) ══════════════════════════════════ */
+.hero{position:relative;min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;background:var(--dark);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(212,255,0,0.05) 1px,transparent 1px),linear-gradient(90deg,rgba(212,255,0,0.05) 1px,transparent 1px);background-size:40px 40px;mask-image:radial-gradient(ellipse 80% 80% at 50% 20%,black 30%,transparent 100%);}
+.hero-glow{position:absolute;top:-20%;left:50%;transform:translateX(-50%);width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(212,255,0,0.18) 0%,rgba(212,255,0,0.04) 40%,transparent 70%);pointer-events:none;}
+.hero-slash{position:absolute;top:0;right:-60px;width:260px;height:100%;background:linear-gradient(170deg,rgba(212,255,0,0.04) 0%,transparent 60%);transform:skewX(-12deg);border-left:1px solid rgba(212,255,0,0.1);}
+.spark{position:absolute;z-index:1;pointer-events:none;font-family:'Space Mono',monospace;font-size:11px;color:rgba(212,255,0,0.4);font-weight:700;letter-spacing:1px;animation:float-spark 6s ease-in-out infinite;}
+.spark-1{top:18%;right:8%;animation-delay:0s;}
+.spark-2{top:42%;right:3%;animation-delay:2.1s;font-size:9px;opacity:0.5;}
+.spark-3{top:28%;left:5%;animation-delay:3.8s;font-size:8px;opacity:0.35;}
+@keyframes float-spark{0%,100%{transform:translateY(0) rotate(-4deg);opacity:0.35;}40%{transform:translateY(-14px) rotate(3deg);opacity:0.75;}70%{transform:translateY(-7px) rotate(-2deg);opacity:0.5;}}
+.hero-content{position:relative;z-index:2;padding:0 20px 36px;}
+.hero-chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:rgba(212,255,0,0.06);color:var(--volt);font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:5px 12px;border-radius:50px;margin-bottom:22px;font-family:'Space Mono',monospace;}
+.hero-slot-dot{width:6px;height:6px;border-radius:50%;background:var(--volt);animation:blink 1.8s infinite;display:inline-block;margin-right:2px;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+h1.hero-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(52px,18vw,90px);line-height:0.92;letter-spacing:2px;color:#fff;margin-bottom:10px;}
+h1.hero-h .hl{display:block;background:linear-gradient(92deg,var(--volt) 0%,#aacc00 60%,var(--volt) 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;animation:hgrad 3.5s linear infinite;}
+@keyframes hgrad{0%{background-position:0% 50%}100%{background-position:200% 50%}}
+.hero-name{font-family:'Bebas Neue',sans-serif;font-size:clamp(22px,7vw,40px);letter-spacing:3px;color:var(--muted);margin-bottom:20px;text-transform:uppercase;}
+.hero-desc{font-size:14px;line-height:1.8;color:rgba(232,234,240,0.65);max-width:360px;margin-bottom:22px;}
+.hero-desc strong{color:var(--text);}
+.hero-trust{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:28px;}
+.hero-trust span{font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);display:flex;align-items:center;gap:4px;}
+.hero-trust span::before{content:'✔';color:var(--volt);font-size:9px;}
+.hero-ctas{display:flex;flex-direction:column;gap:12px;}
+.live-badge{position:absolute;top:14px;right:14px;z-index:10;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,0.6);border:1px solid rgba(37,211,102,0.4);border-radius:50px;padding:5px 11px;font-size:10px;font-weight:700;color:#25D366;backdrop-filter:blur(8px);}
+.live-dot{width:6px;height:6px;border-radius:50%;background:#25D366;animation:blink 1.4s infinite;}
+/* stats strip */
+.stats-strip{position:relative;z-index:2;display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line);background:rgba(0,0,0,0.5);backdrop-filter:blur(8px);}
+.stat{padding:18px 4px;text-align:center;border-right:1px solid var(--line);}
+.stat:last-child{border-right:none;}
+.stat-num{font-family:'Bebas Neue',sans-serif;font-size:24px;color:var(--volt);line-height:1;}
+.stat-lbl{font-size:9px;color:var(--muted);font-weight:500;margin-top:4px;letter-spacing:0.5px;text-transform:uppercase;}
+/* urgency */
+.urgency{background:var(--volt);color:#09090f;padding:13px 20px;text-align:center;font-size:13px;font-weight:700;line-height:1.5;display:flex;align-items:center;justify-content:center;gap:8px;flex-wrap:wrap;}
+.urg-badge{background:rgba(0,0,0,0.15);color:#09090f;font-size:9.5px;font-weight:800;letter-spacing:0.8px;text-transform:uppercase;padding:3px 9px;border-radius:50px;white-space:nowrap;}
+.urgency a{color:#09090f;font-weight:800;text-decoration:underline;}
+/* proof bar */
+.proof-bar{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:20px;display:flex;gap:28px;overflow-x:auto;scrollbar-width:none;align-items:center;}
+.proof-bar::-webkit-scrollbar{display:none;}
+.proof-item{display:flex;align-items:center;gap:8px;flex-shrink:0;font-size:12px;font-weight:600;color:var(--text);white-space:nowrap;}
+.proof-item span{color:var(--volt);font-weight:800;}
+.proof-sep{color:var(--line);flex-shrink:0;}
+/* counter */
+.counter-wrap{background:var(--panel);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:36px 20px;}
+.counter-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;max-width:420px;margin:0 auto 18px;}
+.cnt{background:var(--dark3);border:1px solid var(--line);border-radius:var(--r);padding:20px 8px;text-align:center;}
+.cnt-n{font-family:'Bebas Neue',sans-serif;font-size:32px;color:var(--volt);line-height:1;}
+.cnt-l{font-family:'Space Mono',monospace;font-size:8px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-top:6px;}
+.cnt-desc{text-align:center;font-size:12.5px;color:var(--muted);line-height:1.8;}
+.cnt-desc strong{color:var(--volt);}
+/* services */
+.svc-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.svc{background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:22px 16px;position:relative;overflow:hidden;transition:transform .25s cubic-bezier(.34,1.56,.64,1),border-color .2s;}
+.svc::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--volt),transparent);opacity:0;transition:opacity .2s;}
+.svc:hover{transform:translateY(-5px) scale(1.02);border-color:var(--line);}
+.svc:hover::before{opacity:1;}
+.svc:active{transform:scale(0.97);}
+.svc-ico{width:46px;height:46px;border-radius:11px;background:var(--volt-dim);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:20px;margin-bottom:14px;transition:transform .25s ease;}
+.svc:hover .svc-ico{transform:scale(1.1) rotate(-4deg);}
+.svc h3{font-family:'Bebas Neue',sans-serif;font-size:16px;letter-spacing:0.5px;color:#fff;margin-bottom:8px;}
+.svc p{font-size:12.5px;color:var(--muted);line-height:1.65;}
+.svc-link{display:inline-flex;align-items:center;gap:4px;margin-top:14px;font-size:11px;font-weight:700;color:var(--volt);font-family:'Space Mono',monospace;letter-spacing:0.5px;}
+.svc:hover .svc-link{gap:7px;}
+/* prob solver */
+.prob-intro{font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,6vw,40px);color:#fff;margin-bottom:28px;letter-spacing:1px;line-height:1;}
+.prob-intro span{color:var(--volt);}
+.prob-row{display:flex;align-items:center;gap:16px;padding:18px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.prob-row:last-child{border-bottom:none;}
+.prob-icon{font-size:22px;width:42px;text-align:center;flex-shrink:0;}
+.prob-text{flex:1;font-size:13.5px;color:var(--text);line-height:1.45;}
+.prob-text strong{color:#fff;display:block;font-weight:700;font-size:13px;}
+.prob-text span{font-size:12px;color:var(--muted);}
+.prob-fix{font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:var(--volt);white-space:nowrap;background:var(--volt-dim);border:1px solid var(--line);padding:5px 10px;border-radius:50px;flex-shrink:0;}
+/* steps */
+.steps{display:flex;flex-direction:column;gap:0;}
+.step{display:flex;gap:20px;align-items:flex-start;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.step:last-child{border-bottom:none;}
+.step-n{width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,var(--volt),#88aa00);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:20px;color:#09090f;flex-shrink:0;box-shadow:0 3px 14px rgba(212,255,0,0.35);}
+.step h4{font-family:'Bebas Neue',sans-serif;font-size:18px;color:#fff;letter-spacing:0.5px;margin-bottom:6px;}
+.step p{font-size:13px;color:var(--muted);line-height:1.7;}
+.step-badge{display:inline-block;margin-top:10px;font-family:'Space Mono',monospace;font-size:10px;font-weight:700;color:var(--wa);background:rgba(37,211,102,0.09);border:1px solid rgba(37,211,102,0.22);padding:4px 10px;border-radius:50px;}
+/* why grid */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.why{background:var(--panel2);border:1px solid rgba(255,255,255,0.04);border-radius:var(--r);padding:20px 16px;transition:transform .22s ease,border-color .2s;}
+.why:hover{transform:translateY(-4px);border-color:var(--line);}
+.why-ico{font-size:24px;margin-bottom:10px;display:block;}
+.why h3{font-family:'Bebas Neue',sans-serif;font-size:16px;color:#fff;letter-spacing:0.3px;margin-bottom:7px;}
+.why p{font-size:12.5px;color:var(--muted);line-height:1.6;}
+/* testimonials */
+.testi-grid{display:flex;flex-direction:column;gap:14px;}
+.testi{background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:22px 18px;border-left:2px solid var(--volt);position:relative;transition:transform .22s ease;}
+.testi:hover{transform:translateY(-3px);}
+.testi::after{content:'"';position:absolute;top:8px;right:14px;font-size:54px;color:var(--volt-dim);font-family:'Bebas Neue',sans-serif;line-height:1;}
+.stars{color:var(--volt);font-size:14px;letter-spacing:2px;margin-bottom:10px;}
+.testi blockquote{font-size:13.5px;line-height:1.75;color:rgba(232,234,240,0.8);font-style:italic;margin-bottom:14px;}
+.testi-meta{display:flex;align-items:center;gap:10px;}
+.av{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--volt),#88aa00);display:flex;align-items:center;justify-content:center;font-family:'Bebas Neue',sans-serif;font-size:17px;color:#09090f;flex-shrink:0;}
+.testi-name{font-weight:700;font-size:13px;color:#fff;}
+.testi-loc{font-size:10px;color:var(--muted);}
+.testi-svc{margin-left:auto;font-family:'Space Mono',monospace;font-size:9.5px;font-weight:700;color:var(--volt);background:var(--volt-dim);border:1px solid var(--line);padding:4px 9px;border-radius:50px;white-space:nowrap;flex-shrink:0;}
+/* guarantee */
+.guarantee{background:linear-gradient(135deg,#061410,#082018,#061410);border-top:1px solid rgba(37,211,102,0.15);border-bottom:1px solid rgba(37,211,102,0.15);padding:44px 20px;text-align:center;position:relative;z-index:1;}
+.guar-icon{font-size:40px;margin-bottom:14px;display:block;}
+.guar-h{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,40px);color:#fff;margin-bottom:10px;letter-spacing:1px;}
+.guar-h span{color:var(--wa);}
+.guar-p{font-size:14px;color:var(--muted);line-height:1.8;max-width:400px;margin:0 auto;}
+.guar-items{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:22px;}
+.guar-badge{display:flex;align-items:center;gap:5px;background:rgba(37,211,102,0.08);border:1px solid rgba(37,211,102,0.2);border-radius:50px;padding:7px 14px;font-size:12px;font-weight:700;color:var(--wa);}
+/* area chips */
+.area-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;}
+.area-chip{font-size:12px;font-weight:600;color:var(--muted);background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:50px;padding:7px 15px;}
+.area-chip.hot{color:var(--volt);background:var(--volt-dim);border-color:var(--line);font-weight:700;}
+/* cta block */
+.cta-block{background:linear-gradient(135deg,#1a2400 0%,#0f1a00 100%);border:1px solid var(--line);border-radius:14px;padding:32px 20px;text-align:center;position:relative;overflow:hidden;margin-bottom:28px;}
+.cta-block::before{content:'⚡';position:absolute;right:-10px;bottom:-20px;font-size:100px;opacity:0.06;transform:rotate(-15deg);}
+.cta-block h3{font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,40px);color:var(--volt);letter-spacing:1px;margin-bottom:10px;line-height:1;}
+.cta-block p{font-size:13.5px;color:var(--muted);margin-bottom:24px;line-height:1.7;}
+.cta-row{display:flex;flex-direction:column;gap:12px;}
+/* contact */
+.contact-list{display:flex;flex-direction:column;gap:10px;}
+.c-row{display:flex;align-items:center;gap:14px;background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:15px 16px;}
+.c-ico{width:40px;height:40px;border-radius:8px;background:var(--volt-dim);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.c-body label{display:block;font-family:'Space Mono',monospace;font-size:8px;letter-spacing:2px;color:var(--muted);text-transform:uppercase;margin-bottom:3px;}
+.c-body a,.c-body span{color:#fff;font-size:14px;font-weight:700;}
+.c-body a:hover{color:var(--volt);}
+/* proj grid */
+.proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+@media(min-width:600px){
+  .hero-ctas{flex-direction:row;}
+  .btn-wa,.btn-call{width:auto;}
+  .cta-row{flex-direction:row;justify-content:center;}
+  .svc-grid{grid-template-columns:repeat(3,1fr);}
+  .why-grid{grid-template-columns:repeat(4,1fr);}
+  .testi-grid{flex-direction:row;}
+  .proj-grid{grid-template-columns:repeat(3,1fr);}
+  .proj-card.wide{grid-column:span 1;aspect-ratio:4/3;}
+}
+@media(prefers-color-scheme:light){
+  .stats-strip{background:rgba(232,225,210,0.75);border-top:1px solid rgba(196,127,0,0.18);}
+  .stat{border-right-color:rgba(196,127,0,0.15);}
+  .urgency{background:var(--volt);color:#fff;}
+  .urg-badge{background:rgba(0,0,0,0.12);color:#fff;}
+  .urgency a{color:#fff;}
+  .proof-bar{background:#faf7f0;border-top:1px solid rgba(196,127,0,0.15);border-bottom:1px solid rgba(196,127,0,0.15);}
+  .proof-item{color:#1c1a14;}
+  .counter-wrap{background:#faf7f0;border-top:1px solid rgba(196,127,0,0.15);border-bottom:1px solid rgba(196,127,0,0.15);}
+  .cnt{background:#f0ead8;border-color:rgba(196,127,0,0.18);}
+  .svc{background:#faf7f0;border-color:rgba(196,127,0,0.12);}
+  .svc h3{color:#1c1a14;}
+  .svc:hover{border-color:rgba(196,127,0,0.35);}
+  .svc-ico{background:rgba(196,127,0,0.08);border-color:rgba(196,127,0,0.18);}
+  .prob-intro{color:#1c1a14;}
+  .prob-row{border-bottom-color:rgba(0,0,0,0.06);}
+  .prob-text{color:#1c1a14;}
+  .prob-text span{color:#8a7d60;}
+  .prob-fix{background:rgba(196,127,0,0.08);border-color:rgba(196,127,0,0.20);}
+  .step{border-bottom-color:rgba(0,0,0,0.06);}
+  .step h4{color:#1c1a14;}
+  .step p{color:#6b6350;}
+  .step-badge{color:#1a9e4f;background:rgba(26,158,79,0.08);border-color:rgba(26,158,79,0.20);}
+  .why{background:#faf7f0;border-color:rgba(196,127,0,0.10);}
+  .why h3{color:#1c1a14;}
+  .why p{color:#6b6350;}
+  .testi{background:#faf7f0;border-color:rgba(196,127,0,0.12);}
+  .testi blockquote{color:rgba(28,26,20,0.78);}
+  .testi-name{color:#1c1a14;}
+  .guarantee{background:linear-gradient(135deg,#edf5ec,#f0f7ee,#edf5ec);border-color:rgba(26,158,79,0.15);}
+  .guar-h{color:#1c1a14;}
+  .area-chip{color:#8a7d60;background:rgba(0,0,0,0.03);border-color:rgba(0,0,0,0.08);}
+  .area-chip.hot{background:rgba(196,127,0,0.08);border-color:rgba(196,127,0,0.22);}
+  .cta-block{background:linear-gradient(135deg,#fdf7e8 0%,#f5edd4 100%);border-color:rgba(196,127,0,0.25);}
+  .cta-block p{color:#6b6350;}
+  .c-row{background:#faf7f0;border-color:rgba(196,127,0,0.10);}
+  .c-ico{background:rgba(196,127,0,0.08);border-color:rgba(196,127,0,0.18);}
+  .c-body a,.c-body span{color:#1c1a14;}
+  .hero-chip{border-color:rgba(196,127,0,0.25);background:rgba(196,127,0,0.07);}
+  h1.hero-h{color:#1c1a14;}
+  h1.hero-h .hl{background:linear-gradient(92deg,#c47f00 0%,#e8a000 60%,#c47f00 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;background-size:200% auto;}
+  .hero-name{color:#8a7d60;}
+  .hero-desc{color:rgba(28,26,20,0.65);}
+  .hero-desc strong{color:#1c1a14;}
+  .live-badge{background:rgba(245,240,232,0.85);border-color:rgba(26,158,79,0.3);color:#1a9e4f;}
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- HERO -->
+<section class="hero" style="padding:0;">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-slash"></div>
+  <span class="spark spark-1">⚡ 240V</span>
+  <span class="spark spark-2">SOLAR</span>
+  <span class="spark spark-3">⚡ AC</span>
+  <div class="live-badge"><span class="live-dot"></span> Available Now</div>
+
+  <div class="hero-content">
+    <div class="hero-chip">
+      <span class="hero-slot-dot"></span>
+      <span class="slot-badge-text">Loading slots…</span>
+    </div>
+    <h1 class="hero-h">
+      NO LIGHT?<br>
+      <span class="hl">WE FIX THAT.</span>
+    </h1>
+    <div class="hero-name">by LAYOSAM — IBADAN</div>
+    <p class="hero-desc">Solar installation, inverter setup, house wiring &amp; electrical repairs. <strong>Same-day response, honest pricing.</strong></p>
+    <div class="hero-trust">
+      <span>Free inspection</span>
+      <span>No hidden charges</span>
+      <span>Same-day response</span>
+      <span><span class="jobs-total">200+</span> jobs done</span>
+    </div>
+    <div class="hero-ctas">
+      <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+        {% include '_wa_icon.html' %} Get a Free Quote
+      </a>
+      <a class="btn-call" href="tel:+2348106690594">📞 Call 08106690594</a>
+    </div>
+  </div>
+
+  <div class="stats-strip">
+    <div class="stat"><div class="stat-num jobs-total">200+</div><div class="stat-lbl">Jobs Done</div></div>
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-lbl">Rated</div></div>
+    <div class="stat"><div class="stat-num">10 Yrs+</div><div class="stat-lbl">Experience</div></div>
+    <div class="stat"><div class="stat-num">24/7</div><div class="stat-lbl">Available</div></div>
+  </div>
+</section>
+
+<!-- AVAIL BAR -->
+<div class="avail-bar">
+  <span class="avail-dot"></span>
+  <span><strong>Electrical &amp; solar team available now</strong> &nbsp;·&nbsp; <a href="tel:+2348106690594">08106690594</a> &nbsp;·&nbsp; Free inspection for all new customers</span>
+</div>
+
+<!-- URGENCY -->
+<div class="urgency">
+  <span class="urg-badge">⚡ Limited Slots</span>
+  <span><span class="urg-slots-text">Only 3 inspection slots left today</span> — <a href="https://wa.me/2348106690594?text=I+want+a+free+inspection" target="_blank" rel="noopener">WhatsApp now</a> or call <a href="tel:+2348106690594">08106690594</a></span>
+</div>
+
+<!-- PROOF BAR -->
+<div class="proof-bar">
+  <div class="proof-item"><span>✅</span> Free inspection</div>
+  <div class="proof-sep">·</div>
+  <div class="proof-item"><span>☀️</span> Solar specialists</div>
+  <div class="proof-sep">·</div>
+  <div class="proof-item"><span>🏆</span> 10+ years licensed</div>
+  <div class="proof-sep">·</div>
+  <div class="proof-item"><span>📍</span> Serving all Ibadan</div>
+  <div class="proof-sep">·</div>
+  <div class="proof-item"><span>⚡</span> Same-day emergency</div>
+  <div class="proof-sep">·</div>
+  <div class="proof-item"><span>💯</span> No hidden charges</div>
+</div>
+
+<!-- LIVE COUNTER -->
+<div class="counter-wrap rev">
+  <div class="counter-grid">
+    <div class="cnt"><div class="cnt-n" id="cnt-total">—</div><div class="cnt-l">Total Jobs</div></div>
+    <div class="cnt"><div class="cnt-n" id="cnt-month">—</div><div class="cnt-l month-name">This Month</div></div>
+    <div class="cnt"><div class="cnt-n" id="cnt-week">—</div><div class="cnt-l">This Week</div></div>
+  </div>
+  <p class="cnt-desc cnt-desc-dynamic">Calculating live stats…</p>
+</div>
+
+<!-- SERVICES -->
+<section class="bg-panel rev" id="services">
+  <span class="sec-eyebrow">// WHAT WE DO</span>
+  <h2 class="st">Solar &amp; Electrical <span>Services</span></h2>
+  <p class="sec-sub">Solar installation is our core specialty. We also handle inverters, house wiring and all electrical engineering work.</p>
+  <div class="svc-grid">
+    {% set services_data = [
+      ("☀️","Solar Installation","Full rooftop and ground solar panel systems for homes, offices and businesses. Properly sized and neatly mounted.","I+need+solar+installation"),
+      ("🔋","Inverter &amp; Battery","Inverter installation, battery bank setup, sizing and maintenance. Keep power on when NEPA goes off.","I+need+inverter+setup"),
+      ("🏠","House Wiring","New builds, renovations and extensions. Cables routed neatly, conduits fitted properly.","I+need+house+wiring"),
+      ("🔌","DB Board &amp; Breakers","Distribution board installation, replacement, upgrade and full breaker panel setup.","I+need+DB+board+work"),
+      ("⚡","Electrical Repairs","Faults, sparking sockets, tripped breakers and power outages — fixed fast, same day.","I+have+an+electrical+fault"),
+      ("🔧","Solar Maintenance","Panel cleaning, inverter servicing, battery health checks and system performance audits.","I+need+solar+maintenance")
+    ] %}
+    {% for ico, title, desc, wa_msg in services_data %}
+    <div class="svc">
+      <div class="svc-ico">{{ ico }}</div>
+      <h3>{{ title | safe }}</h3>
+      <p>{{ desc }}</p>
+      <a class="svc-link" href="https://wa.me/2348106690594?text={{ wa_msg }}" target="_blank" rel="noopener">Get Quote →</a>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- PROBLEM SOLVER -->
+<section class="bg-dark rev">
+  <span class="sec-eyebrow">// RECOGNISE YOUR SITUATION?</span>
+  <p class="prob-intro">We Handle <span>All Of These.</span></p>
+  <div class="prob-list">
+    {% set problems = [
+      ("☀️","Tired of NEPA taking light every day","Want consistent power without a generator burning fuel","Solar solution"),
+      ("🔋","Inverter not holding charge or tripping","Battery drains fast, inverter beeps constantly or shuts down","Same-day fix"),
+      ("🔴","Whole house tripped, no power","Main breaker keeps tripping or won't reset","Fixed fast"),
+      ("⚠️","Socket sparking or smoking","Burning smell, discoloured plates, hot socket","Emergency repair"),
+      ("🏗️","Building a new house or renovating","Need full wiring and solar system done properly from scratch","Full package"),
+      ("📊","High generator fuel cost every month","Want to cut running costs with solar power","Solar audit free")
+    ] %}
+    {% for ico, strong, sub, fix in problems %}
+    <div class="prob-row">
+      <div class="prob-icon">{{ ico }}</div>
+      <div class="prob-text">
+        <strong>{{ strong }}</strong>
+        <span>{{ sub }}</span>
+      </div>
+      <span class="prob-fix">{{ fix }}</span>
+    </div>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section class="bg-panel rev">
+  <span class="sec-eyebrow">// THE PROCESS</span>
+  <h2 class="st">How It <span>Works</span></h2>
+  <p class="sec-sub">Getting started is fast and completely free. No forms, no waiting, no stress.</p>
+  <div class="steps">
+    <div class="step"><div class="step-n">1</div><div><h4>You Contact Us</h4><p>WhatsApp us or call 08106690594. Describe your problem — we reply within minutes and confirm a time.</p><span class="step-badge">✔ Reply within minutes</span></div></div>
+    <div class="step"><div class="step-n">2</div><div><h4>Free Inspection &amp; Quote</h4><p>Our electrician visits your location, fully inspects the problem and gives you a clear, honest price — no commitment required.</p><span class="step-badge">✔ 100% free — no obligation</span></div></div>
+    <div class="step"><div class="step-n">3</div><div><h4>We Do the Work</h4><p>Once you approve, we carry out the full job using quality materials. Cables routed neatly, panels left tidy.</p><span class="step-badge">✔ Clean, professional finish</span></div></div>
+    <div class="step"><div class="step-n">4</div><div><h4>Tested &amp; Confirmed</h4><p>We test every circuit, socket and switch before leaving. You get our number for follow-up — we don't disappear after the job.</p><span class="step-badge">✔ After-job support included</span></div></div>
+  </div>
+</section>
+
+<!-- WHY US -->
+<section class="bg-dark rev">
+  <span class="sec-eyebrow">// WHY LAYOSAM</span>
+  <h2 class="st">Built on <span>Trust</span></h2>
+  <p class="sec-sub">We've built our reputation one job at a time — by showing up, being honest and doing work that lasts.</p>
+  <div class="why-grid">
+    <div class="why"><span class="why-ico">🏆</span><h3>10+ Years Experience</h3><p>Hundreds of completed electrical jobs across Ibadan homes and businesses.</p></div>
+    <div class="why"><span class="why-ico">💰</span><h3>Honest Pricing</h3><p>Clear quote before we start. What we say is exactly what you pay. No stories, no surprises.</p></div>
+    <div class="why"><span class="why-ico">⚡</span><h3>Fast Response</h3><p>We pick up, we reply, we show up. Electrical emergencies handled same day.</p></div>
+    <div class="why"><span class="why-ico">✨</span><h3>Neat &amp; Safe Work</h3><p>Cables run properly, conduits used, panels left clean. Safety is not optional.</p></div>
+  </div>
+</section>
+
+<!-- COMPLETED PROJECTS (from Supabase) -->
+<section class="bg-panel rev" id="projects">
+  <span class="sec-eyebrow">// PAST WORK</span>
+  <h2 class="st">Completed <span>Projects</span></h2>
+  <p class="sec-sub projects-sub-dynamic">Recent solar and electrical jobs completed across Ibadan.</p>
+  <div class="proj-grid">
+    {% if projects %}
+      {% for project in projects %}
+        {% set wide = loop.first %}
+        {% include '_project_card.html' %}
+      {% endfor %}
+    {% else %}
+      {# fallback static cards when Supabase not yet configured #}
+      {% for i in range(1, 7) %}
+      <div class="proj-card {% if i == 1 %}wide{% endif %}">
+        <img class="proj-img" src="{{ url_for('static', filename='project/project' ~ i ~ '.jpg') }}"
+             alt="Project {{ i }}"
+             loading="lazy"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="proj-ph" style="display:none"><span class="proj-ph-ico">📸</span><span class="proj-ph-lbl">project{{ i }}.jpg</span></div>
+        <div class="proj-label">
+          <span class="proj-loc">📍 Ibadan</span>
+          <span class="proj-name">Electrical Project {{ i }}</span>
+        </div>
+      </div>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div style="text-align:center;margin-top:24px;">
+    <a class="btn-outline" href="{{ url_for('projects_page') }}">View All Projects →</a>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="bg-dark rev">
+  <span class="sec-eyebrow">// WHAT CLIENTS SAY</span>
+  <h2 class="st">Real <span>Reviews</span></h2>
+  <p class="sec-sub">Ibadan homeowners and business owners who have used our services.</p>
+  <div class="testi-grid">
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <blockquote>Very reliable and neat job. My solar has been working perfectly since installation. I have already referred him to my neighbour in the same street.</blockquote>
+      <div class="testi-meta"><div class="av">A</div><div><div class="testi-name">Mr. Adebayo Olusanya</div><div class="testi-loc">📍 Bodija, 3-bedroom flat</div></div><span class="testi-svc">☀️ Solar Setup</span></div>
+    </div>
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <blockquote>Explained everything clearly before starting and delivered exactly what was quoted. The wiring in my new house is very neat. Honest pricing, no hidden charges at all.</blockquote>
+      <div class="testi-meta"><div class="av">K</div><div><div class="testi-name">Mrs. Kemi Adewale</div><div class="testi-loc">📍 New build, Akobo</div></div><span class="testi-svc">🏠 House Wiring</span></div>
+    </div>
+    <div class="testi">
+      <div class="stars">★★★★★</div>
+      <blockquote>My inverter was giving problem and he fixed it same day I called. Very fast, professional and the price was fair. No more generator stress since he set up the solar.</blockquote>
+      <div class="testi-meta"><div class="av">T</div><div><div class="testi-name">Mr. Tunde Fashola</div><div class="testi-loc">📍 Ring Road, Ibadan</div></div><span class="testi-svc">🔋 Inverter Repair</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- GUARANTEE -->
+<div class="guarantee rev">
+  <span class="guar-icon">🛡️</span>
+  <div class="guar-h">Our <span>Promise</span> to You</div>
+  <p class="guar-p">We stand behind every job. If something doesn't work correctly after we leave, we come back and fix it — no argument, no extra charge.</p>
+  <div class="guar-items">
+    <span class="guar-badge">✔ Free inspection</span>
+    <span class="guar-badge">✔ No hidden charges</span>
+    <span class="guar-badge">✔ Work tested before leaving</span>
+    <span class="guar-badge">✔ After-job support</span>
+    <span class="guar-badge">✔ Honest pricing always</span>
+  </div>
+</div>
+
+<!-- COVERAGE -->
+<section class="bg-panel rev">
+  <span class="sec-eyebrow">// WHERE WE WORK</span>
+  <h2 class="st">We Cover <span>All Ibadan</span></h2>
+  <p class="sec-sub">Our electricians are based in Ibadan and serve all major areas. Not sure if we cover your area? Just call.</p>
+  <div class="area-chips">
+    {% for area, hot in [("Bodija",1),("Akobo",1),("UI Area",1),("Oluyole",1),("Agodi GRA",1),("Ring Road",1),("Iwo Road",0),("Ojoo",0),("Apata",0),("Molete",0),("Dugbe",0),("Challenge",0),("Iyaganku",0),("Sango",0),("Alakia",0),("Eleyele",0),("Yemetu",0),("Oke-Ado",0)] %}
+    <span class="area-chip{% if hot %} hot{% endif %}">{{ area }}</span>
+    {% endfor %}
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="bg-dark rev" id="contact">
+  <span class="sec-eyebrow">// GET STARTED</span>
+  <h2 class="st">Ready to <span>Fix It?</span></h2>
+  <p class="sec-sub">Free inspection, honest quote, clean job. One call away.</p>
+  <div class="cta-block">
+    <h3>Get Your Free Quote Today</h3>
+    <p>We visit, assess and give you a clear price before any work begins. No obligation.</p>
+    <div class="cta-row">
+      <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20a%20free%20quote." target="_blank" rel="noopener">
+        {% include '_wa_icon.html' %} WhatsApp Us Now
+      </a>
+      <a class="btn-call" href="tel:+2348106690594">📞 Call 08106690594</a>
+    </div>
+  </div>
+  <div class="contact-list">
+    <div class="c-row"><div class="c-ico">📞</div><div class="c-body"><label>Main Line</label><a href="tel:+2348106690594">08106690594</a></div></div>
+    <div class="c-row"><div class="c-ico">📱</div><div class="c-body"><label>Other Line</label><a href="tel:+2347076240267">07076240267</a></div></div>
+    <div class="c-row"><div class="c-ico">💬</div><div class="c-body"><label>WhatsApp</label><a href="https://wa.me/2348106690594?text=Hello" target="_blank" rel="noopener">Chat with us on WhatsApp</a></div></div>
+    <div class="c-row"><div class="c-ico">🕐</div><div class="c-body"><label>Working Hours</label><span>Monday – Saturday · 7am to 7pm</span></div></div>
+    <div class="c-row"><div class="c-ico">📍</div><div class="c-body"><label>Service Area</label><span>All of Ibadan, Oyo State</span></div></div>
+  </div>
+</section>
+{% endblock %}

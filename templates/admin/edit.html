@@ -1,0 +1,86 @@
+{% extends "admin/base_admin.html" %}
+{% block title %}Edit Project{% endblock %}
+
+{% block content %}
+<div class="admin-section-hd">
+  <h2>Edit Project</h2>
+  <a href="{{ url_for('admin_dashboard') }}" style="font-family:'Space Mono',monospace;font-size:11px;color:var(--muted);transition:color .2s;"
+     onmouseover="this.style.color='var(--volt)'" onmouseout="this.style.color='var(--muted)'">← Back to Dashboard</a>
+</div>
+
+<!-- Current image preview -->
+{% if project.image_url %}
+<div style="margin-bottom:20px;border-radius:var(--r);overflow:hidden;max-height:220px;border:1px solid rgba(255,255,255,0.06);">
+  <img src="{{ project.image_url }}" alt="{{ project.title }}"
+       style="width:100%;height:220px;object-fit:cover;display:block;"
+       onerror="this.style.display='none'">
+</div>
+<p style="font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:20px;">
+  Current photo — upload a new one below to replace it
+</p>
+{% endif %}
+
+<div class="admin-form">
+  <form method="POST" action="{{ url_for('admin_edit', project_id=project.id) }}" enctype="multipart/form-data">
+
+    <div class="form-row">
+      <div class="form-group">
+        <label>Project Title *</label>
+        <input type="text" name="title" value="{{ project.title }}" required maxlength="120">
+      </div>
+      <div class="form-group">
+        <label>Location *</label>
+        <input type="text" name="location" value="{{ project.location }}" required maxlength="120">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>Category</label>
+      <select name="category">
+        {% for cat in ["Solar Installation","Inverter & Battery","House Wiring","DB Board & Breakers","Electrical Repairs","Solar Maintenance"] %}
+        <option value="{{ cat }}" {% if project.category == cat %}selected{% endif %}>{{ cat }}</option>
+        {% endfor %}
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label>Description</label>
+      <textarea name="description" maxlength="600">{{ project.description or '' }}</textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Replace Photo (leave empty to keep current)</label>
+      <div class="file-drop" id="file-drop-zone">
+        <input type="file" name="image" id="image-input" accept=".jpg,.jpeg,.png,.webp">
+        <span class="file-drop-ico">📸</span>
+        <div class="file-drop-lbl"><strong>Tap to choose new photo</strong><br>or drag and drop here</div>
+      </div>
+      <div class="file-preview" id="file-preview">
+        <img id="preview-img" src="" alt="New photo preview">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="toggle-row">
+        <input type="checkbox" name="featured" id="featured" {% if project.featured %}checked{% endif %}>
+        <label for="featured">Mark as featured</label>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;">
+      <button type="submit" class="btn-call" style="border:none;cursor:pointer;font-size:14px;padding:15px 28px;">
+        💾 Save Changes
+      </button>
+      <a href="{{ url_for('admin_dashboard') }}" class="btn-outline">Cancel</a>
+      <form method="POST" action="{{ url_for('admin_delete', project_id=project.id) }}" class="delete-form" style="margin-left:auto;">
+        <button type="submit" class="admin-btn-del" style="padding:11px 18px;font-size:13px;">🗑 Delete This Project</button>
+      </form>
+    </div>
+
+  </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

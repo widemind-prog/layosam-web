@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Services – Solar Installation, Inverters & Electrical in Ibadan | Layosam{% endblock %}
+{% block meta_desc %}Full solar installation, inverter setup, house wiring, DB boards and electrical repairs in Ibadan. Free inspection and honest quotes. Call 08106690594.{% endblock %}
+
+{% block content %}
+<div class="page-hero">
+  <div class="page-hero-grid"></div>
+  <div class="page-hero-glow"></div>
+  <div class="page-hero-content rev">
+    <span class="page-eyebrow">// OUR SERVICES</span>
+    <h1>What We <span>Do</span></h1>
+    <p>Solar installation is our specialty. We also handle inverters, house wiring and all electrical engineering work — done properly and priced fairly.</p>
+  </div>
+</div>
+
+<div class="avail-bar">
+  <span class="avail-dot"></span>
+  <span><strong>Team available now</strong> &nbsp;·&nbsp; <a href="tel:+2348106690594">08106690594</a> &nbsp;·&nbsp; Free inspection for all new customers</span>
+</div>
+
+<!-- SERVICES DETAIL -->
+{% set service_list = [
+  {
+    "ico": "☀️",
+    "title": "Solar Installation",
+    "wa": "I+need+solar+installation",
+    "tag": "Most Popular",
+    "tag_color": "var(--volt)",
+    "bullets": [
+      "Full system design and sizing for your load",
+      "Rooftop and ground-mount panel installation",
+      "Inverter and charge controller setup",
+      "Battery bank wiring and configuration",
+      "Grid-tie and off-grid systems",
+      "System commissioning and owner training"
+    ],
+    "desc": "We install complete solar systems from scratch — from assessing your power needs to mounting the panels, connecting the batteries and programming the inverter. Every installation is properly sized, neatly done and tested before we leave."
+  },
+  {
+    "ico": "🔋",
+    "title": "Inverter & Battery Setup",
+    "wa": "I+need+inverter+setup",
+    "tag": "",
+    "tag_color": "",
+    "bullets": [
+      "Inverter installation and configuration",
+      "Battery bank sizing and wiring",
+      "Inverter fault diagnosis and repair",
+      "Battery replacement and balancing",
+      "ATS (Automatic Transfer Switch) installation",
+      "Existing system upgrade and expansion"
+    ],
+    "desc": "Inverter problems are one of the most common calls we receive. Whether your inverter is beeping, not charging, shutting down or refusing to switch over, we diagnose the fault and fix it — usually same day."
+  },
+  {
+    "ico": "🏠",
+    "title": "House Wiring",
+    "wa": "I+need+house+wiring",
+    "tag": "",
+    "tag_color": "",
+    "bullets": [
+      "New build complete wiring from scratch",
+      "Renovation and extension wiring",
+      "Conduit installation and cable routing",
+      "Socket, switch and lighting point installation",
+      "Earthing and bonding",
+      "Wiring inspection and certification"
+    ],
+    "desc": "Whether you are building a new house, renovating an existing one or adding an extension, we handle the full electrical installation — cables properly routed, conduits neatly fixed, all points working and tested."
+  },
+  {
+    "ico": "🔌",
+    "title": "DB Board & Breakers",
+    "wa": "I+need+DB+board+work",
+    "tag": "",
+    "tag_color": "",
+    "bullets": [
+      "New distribution board installation",
+      "Old DB replacement and upgrade",
+      "MCB and RCCB fitting",
+      "Load balancing across phases",
+      "Sub-board installation",
+      "Full labelling and documentation"
+    ],
+    "desc": "A properly installed DB board is the foundation of a safe electrical system. We install new boards, replace old ones, upgrade breakers and properly label every circuit so you always know what controls what."
+  },
+  {
+    "ico": "⚡",
+    "title": "Electrical Repairs",
+    "wa": "I+have+an+electrical+fault",
+    "tag": "Same Day",
+    "tag_color": "var(--wa)",
+    "bullets": [
+      "Tripped or faulty circuit breakers",
+      "Sparking or dead sockets",
+      "Lighting faults and flickering",
+      "Complete power outage diagnosis",
+      "Burning smell or hot fittings",
+      "Partial power loss in rooms"
+    ],
+    "desc": "Electrical faults need fast attention. We offer same-day response for most repair calls across Ibadan. Call or WhatsApp us, describe the problem and we'll tell you how quickly we can get there."
+  },
+  {
+    "ico": "🔧",
+    "title": "Solar Maintenance",
+    "wa": "I+need+solar+maintenance",
+    "tag": "",
+    "tag_color": "",
+    "bullets": [
+      "Solar panel cleaning and inspection",
+      "Inverter servicing and firmware update",
+      "Battery health check and replacement",
+      "Wiring inspection and retightening",
+      "Performance audit with report",
+      "Annual maintenance contracts"
+    ],
+    "desc": "A solar system only performs at its best with regular maintenance. We offer one-off service visits and annual maintenance contracts to keep your system generating maximum power and extend the life of your batteries."
+  }
+] %}
+
+{% for svc in service_list %}
+<section class="{% if loop.index is odd %}bg-dark{% else %}bg-panel{% endif %} rev">
+  <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:22px;flex-wrap:wrap;">
+    <div style="width:54px;height:54px;border-radius:12px;background:var(--volt-dim);border:1px solid var(--line);display:flex;align-items:center;justify-content:center;font-size:24px;flex-shrink:0;">{{ svc.ico }}</div>
+    <div style="flex:1;min-width:200px;">
+      <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:4px;">
+        <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(26px,6vw,36px);color:#fff;letter-spacing:1px;line-height:1;">{{ svc.title }}</h2>
+        {% if svc.tag %}
+        <span style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;color:#09090f;background:{{ svc.tag_color }};padding:4px 10px;border-radius:50px;">{{ svc.tag }}</span>
+        {% endif %}
+      </div>
+      <p style="font-size:13.5px;color:var(--muted);line-height:1.8;max-width:560px;">{{ svc.desc }}</p>
+    </div>
+  </div>
+
+  <div style="background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-radius:var(--r);padding:20px 20px;margin-bottom:20px;">
+    <div style="font-family:'Space Mono',monospace;font-size:9px;font-weight:700;letter-spacing:2px;color:var(--volt);text-transform:uppercase;margin-bottom:14px;">WHAT'S INCLUDED</div>
+    <ul style="list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:8px 16px;">
+      {% for bullet in svc.bullets %}
+      <li style="font-size:13px;color:var(--text);display:flex;gap:8px;align-items:flex-start;">
+        <span style="color:var(--volt);font-size:10px;margin-top:4px;flex-shrink:0;">✔</span>
+        {{ bullet }}
+      </li>
+      {% endfor %}
+    </ul>
+  </div>
+
+  <a class="btn-wa" href="https://wa.me/2348106690594?text={{ svc.wa }}" target="_blank" rel="noopener" style="display:inline-flex;">
+    {% include '_wa_icon.html' %} Get a Quote for {{ svc.title }}
+  </a>
+</section>
+{% endfor %}
+
+<!-- BOTTOM CTA -->
+<section class="bg-dark rev">
+  <div style="background:linear-gradient(135deg,#1a2400,#0f1a00);border:1px solid var(--line);border-radius:14px;padding:36px 24px;text-align:center;position:relative;overflow:hidden;">
+    <div style="position:absolute;right:-10px;bottom:-20px;font-size:100px;opacity:0.06;transform:rotate(-15deg);">⚡</div>
+    <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,7vw,40px);color:var(--volt);letter-spacing:1px;margin-bottom:10px;line-height:1;">Not Sure What You Need?</h2>
+    <p style="font-size:13.5px;color:var(--muted);margin-bottom:24px;line-height:1.7;">Just describe your problem. We'll tell you exactly what service applies and give you an honest quote — free of charge.</p>
+    <div style="display:flex;flex-direction:column;gap:12px;align-items:center;">
+      <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C+I+need+help+with+my+electrical+or+solar." target="_blank" rel="noopener" style="width:100%;max-width:320px;">
+        {% include '_wa_icon.html' %} Describe Your Problem
+      </a>
+      <a class="btn-call" href="tel:+2348106690594" style="width:100%;max-width:320px;">📞 Call 08106690594</a>
+    </div>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,24 @@
+{# _project_card.html — pass `project` and optional `wide=true` #}
+<div class="proj-card filterable-card {% if wide %}wide{% endif %}" data-cat="{{ project.category | default('') }}">
+  {% if project.image_url %}
+    <img class="proj-img"
+         src="{{ project.image_url }}"
+         alt="{{ project.title }}"
+         loading="lazy"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <div class="proj-ph" style="display:none">
+      <span class="proj-ph-ico">📸</span>
+      <span class="proj-ph-lbl">{{ project.title }}</span>
+    </div>
+  {% else %}
+    <div class="proj-ph">
+      <span class="proj-ph-ico">📸</span>
+      <span class="proj-ph-lbl">{{ project.title }}</span>
+    </div>
+  {% endif %}
+  <div class="proj-label">
+    <span class="proj-loc">📍 {{ project.location }}</span>
+    <span class="proj-name">{{ project.title }}</span>
+    {% if project.category %}<span class="proj-cat">{{ project.category }}</span>{% endif %}
+  </div>
+</div>

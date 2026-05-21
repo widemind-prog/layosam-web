@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{% block title %}Admin{% endblock %} – Layosam</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+<div class="admin-wrap">
+
+  <header class="admin-header">
+    <div class="admin-header-brand">
+      ⚡ LAYOSAM <span>/ ADMIN</span>
+    </div>
+    <div style="display:flex;align-items:center;gap:8px;">
+      <div class="admin-nav-links">
+        <a href="{{ url_for('admin_dashboard') }}" class="{% if request.endpoint == 'admin_dashboard' %}active{% endif %}">Dashboard</a>
+        <a href="{{ url_for('admin_upload') }}"    class="{% if request.endpoint == 'admin_upload'    %}active{% endif %}">Upload</a>
+        <a href="{{ url_for('index') }}" target="_blank">View Site ↗</a>
+      </div>
+      <a href="{{ url_for('admin_logout') }}" class="admin-logout">Logout</a>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div style="padding:12px 24px 0;">
+        {% for cat, msg in messages %}
+          <div class="flash-msg {{ cat }}">{{ msg }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  {% endwith %}
+
+  <main class="admin-main">
+    {% block content %}{% endblock %}
+  </main>
+
+</div>
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% block extra_js %}{% endblock %}
+</body>
+</html>

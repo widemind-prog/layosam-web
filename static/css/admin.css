@@ -1,0 +1,205 @@
+/* ══════════════════════════════════════════════════════════
+   LAYOSAM Admin Panel Styles
+══════════════════════════════════════════════════════════ */
+.admin-wrap{
+  min-height:100vh;display:flex;flex-direction:column;
+  background:var(--dark);
+}
+.admin-header{
+  background:rgba(9,9,15,0.95);
+  border-bottom:1px solid var(--line);
+  padding:0 24px;height:60px;
+  display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:500;
+  backdrop-filter:blur(16px);
+}
+.admin-header-brand{
+  font-family:'Bebas Neue',sans-serif;font-size:18px;
+  letter-spacing:2px;color:var(--volt);
+  display:flex;align-items:center;gap:8px;
+}
+.admin-header-brand span{color:var(--muted);font-size:13px;letter-spacing:1px;font-family:'Space Mono',monospace;}
+.admin-nav-links{display:flex;gap:4px;align-items:center;}
+.admin-nav-links a{
+  font-size:12px;font-weight:600;color:var(--muted);
+  padding:6px 12px;border-radius:6px;transition:color .2s,background .2s;
+}
+.admin-nav-links a:hover,.admin-nav-links a.active{color:var(--volt);background:var(--volt-dim);}
+.admin-logout{
+  font-family:'Space Mono',monospace;font-size:10px;font-weight:700;
+  color:var(--muted);border:1px solid rgba(255,255,255,0.07);
+  padding:6px 12px;border-radius:6px;transition:all .2s;
+}
+.admin-logout:hover{color:#ff5050;border-color:#ff5050;background:rgba(255,80,80,0.06);}
+
+.admin-main{flex:1;padding:32px 24px 80px;max-width:1000px;width:100%;margin:0 auto;}
+
+/* Stat cards */
+.admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:32px;}
+.admin-stat{
+  background:var(--panel);border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--r);padding:20px;
+}
+.admin-stat-n{
+  font-family:'Bebas Neue',sans-serif;font-size:32px;
+  color:var(--volt);line-height:1;margin-bottom:4px;
+}
+.admin-stat-l{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px;font-weight:600;}
+
+/* Project grid (admin) */
+.admin-proj-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.admin-proj-card{
+  background:var(--panel);border:1px solid rgba(255,255,255,0.05);
+  border-radius:var(--r);overflow:hidden;
+  transition:border-color .2s;
+}
+.admin-proj-card:hover{border-color:var(--line);}
+.admin-proj-img{
+  width:100%;aspect-ratio:16/9;object-fit:cover;display:block;
+  background:var(--panel2);
+}
+.admin-proj-img-ph{
+  width:100%;aspect-ratio:16/9;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--panel2);
+  font-size:28px;opacity:0.3;
+}
+.admin-proj-body{padding:14px;}
+.admin-proj-title{font-family:'Bebas Neue',sans-serif;font-size:17px;color:#fff;letter-spacing:.5px;margin-bottom:4px;}
+.admin-proj-meta{font-family:'Space Mono',monospace;font-size:9px;color:var(--muted);margin-bottom:10px;display:flex;gap:10px;flex-wrap:wrap;}
+.admin-proj-meta span{color:var(--volt);}
+.admin-proj-actions{display:flex;gap:8px;}
+.admin-btn-edit{
+  font-size:11px;font-weight:700;padding:7px 14px;border-radius:6px;
+  background:var(--volt-dim);border:1px solid var(--line);color:var(--volt);
+  transition:all .2s;cursor:pointer;
+}
+.admin-btn-edit:hover{background:var(--volt);color:#09090f;}
+.admin-btn-del{
+  font-size:11px;font-weight:700;padding:7px 14px;border-radius:6px;
+  background:rgba(255,80,80,0.08);border:1px solid rgba(255,80,80,0.2);color:#ff5050;
+  transition:all .2s;cursor:pointer;
+}
+.admin-btn-del:hover{background:rgba(255,80,80,0.18);}
+.featured-badge{
+  font-family:'Space Mono',monospace;font-size:8px;font-weight:700;
+  color:var(--volt);background:var(--volt-dim);border:1px solid var(--line);
+  padding:3px 8px;border-radius:50px;margin-left:auto;align-self:center;
+}
+
+/* Upload form */
+.admin-form{background:var(--panel);border:1px solid rgba(255,255,255,0.05);border-radius:14px;padding:28px 24px;}
+.form-group{margin-bottom:20px;}
+.form-group label{
+  display:block;font-family:'Space Mono',monospace;
+  font-size:9px;font-weight:700;letter-spacing:2px;
+  color:var(--muted);text-transform:uppercase;margin-bottom:8px;
+}
+.form-group input[type=text],
+.form-group input[type=password],
+.form-group select,
+.form-group textarea{
+  width:100%;background:var(--dark3);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:8px;padding:13px 14px;
+  color:var(--text);font-size:14px;font-family:'DM Sans',sans-serif;
+  transition:border-color .2s,box-shadow .2s;
+  outline:none;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  border-color:var(--volt);
+  box-shadow:0 0 0 3px rgba(212,255,0,0.08);
+}
+.form-group textarea{min-height:100px;resize:vertical;}
+.form-group select option{background:#1a1a28;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+/* File drop zone */
+.file-drop{
+  border:2px dashed rgba(212,255,0,0.2);border-radius:10px;
+  padding:32px;text-align:center;cursor:pointer;
+  transition:border-color .2s,background .2s;
+  background:rgba(212,255,0,0.03);
+}
+.file-drop:hover,.file-drop.dragover{border-color:var(--volt);background:var(--volt-dim);}
+.file-drop input[type=file]{display:none;}
+.file-drop-ico{font-size:28px;display:block;margin-bottom:8px;opacity:0.5;}
+.file-drop-lbl{font-size:13px;color:var(--muted);line-height:1.6;}
+.file-drop-lbl strong{color:var(--volt);}
+.file-preview{
+  margin-top:14px;border-radius:8px;overflow:hidden;
+  max-height:200px;display:none;
+}
+.file-preview img{width:100%;height:200px;object-fit:cover;display:block;}
+
+/* Toggle */
+.toggle-row{display:flex;align-items:center;gap:12px;}
+.toggle-row input[type=checkbox]{
+  width:18px;height:18px;accent-color:var(--volt);cursor:pointer;
+}
+.toggle-row label{font-size:13px;color:var(--text);cursor:pointer;}
+
+/* Admin login */
+.admin-login-wrap{
+  min-height:100vh;display:flex;align-items:center;justify-content:center;
+  padding:20px;background:var(--dark);
+}
+.admin-login-box{
+  background:var(--panel);border:1px solid rgba(255,255,255,0.05);
+  border-radius:14px;padding:40px 32px;width:100%;max-width:380px;text-align:center;
+}
+.admin-login-icon{font-size:36px;margin-bottom:12px;display:block;}
+.admin-login-title{
+  font-family:'Bebas Neue',sans-serif;font-size:28px;
+  color:#fff;letter-spacing:2px;margin-bottom:6px;
+}
+.admin-login-sub{font-size:12px;color:var(--muted);margin-bottom:28px;}
+.admin-login-err{
+  background:rgba(255,80,80,0.1);border:1px solid rgba(255,80,80,0.2);
+  border-radius:8px;padding:10px 14px;
+  font-size:12px;color:#ff5050;font-weight:600;margin-bottom:16px;
+}
+
+/* Section title in admin */
+.admin-section-hd{
+  display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:20px;padding-bottom:16px;
+  border-bottom:1px solid rgba(255,255,255,0.06);
+}
+.admin-section-hd h2{
+  font-family:'Bebas Neue',sans-serif;font-size:22px;
+  color:#fff;letter-spacing:1px;
+}
+.admin-add-btn{
+  display:inline-flex;align-items:center;gap:6px;
+  background:var(--volt);color:#09090f;
+  padding:9px 18px;border-radius:8px;
+  font-size:12px;font-weight:800;
+  transition:opacity .2s;
+}
+.admin-add-btn:hover{opacity:0.85;}
+
+@media(max-width:599px){
+  .admin-stats{grid-template-columns:repeat(3,1fr);}
+  .admin-proj-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+  .admin-main{padding:24px 16px 80px;}
+}
+@media(prefers-color-scheme:light){
+  .admin-wrap,.admin-login-wrap{background:#f5f0e8;}
+  .admin-header{background:rgba(245,240,232,0.96);border-bottom:1px solid rgba(196,127,0,0.18);}
+  .admin-header-brand{color:var(--volt);}
+  .admin-stat,.admin-proj-card,.admin-form,.admin-login-box{background:#faf7f0;border-color:rgba(196,127,0,0.12);}
+  .admin-proj-title{color:#1c1a14;}
+  .form-group input,.form-group select,.form-group textarea{background:#f0ead8;border-color:rgba(196,127,0,0.15);color:#1c1a14;}
+  .form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--volt);}
+  .admin-btn-edit{background:rgba(196,127,0,0.08);border-color:rgba(196,127,0,0.2);color:var(--volt);}
+  .admin-btn-edit:hover{background:var(--volt);color:#fff;}
+  .file-drop{border-color:rgba(196,127,0,0.25);background:rgba(196,127,0,0.04);}
+  .admin-section-hd{border-bottom-color:rgba(196,127,0,0.15);}
+  .admin-section-hd h2{color:#1c1a14;}
+  .admin-add-btn{color:#fff;}
+  .admin-login-title{color:#1c1a14;}
+}

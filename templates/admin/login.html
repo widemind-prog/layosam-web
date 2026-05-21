@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Login – Layosam</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+<link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body>
+<div class="admin-login-wrap">
+  <div class="admin-login-box">
+    <span class="admin-login-icon">⚡</span>
+    <div class="admin-login-title">LAYOSAM ADMIN</div>
+    <div class="admin-login-sub">Enter your password to access the admin panel</div>
+
+    {% if error %}
+    <div class="admin-login-err">{{ error }}</div>
+    {% endif %}
+
+    <form method="POST" action="{{ url_for('admin_login') }}">
+      <div class="form-group" style="text-align:left;">
+        <label>Password</label>
+        <input type="password" name="password" placeholder="Admin password" autofocus autocomplete="current-password" required>
+      </div>
+      <button type="submit" class="btn-call" style="width:100%;border:none;cursor:pointer;font-size:14px;">
+        Enter Admin Panel
+      </button>
+    </form>
+
+    <div style="margin-top:20px;">
+      <a href="{{ url_for('index') }}" style="font-family:'Space Mono',monospace;font-size:10px;color:var(--muted);text-decoration:none;transition:color .2s;"
+         onmouseover="this.style.color='var(--volt)'" onmouseout="this.style.color='var(--muted)'">← Back to website</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>
