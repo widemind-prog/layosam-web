@@ -5,20 +5,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
 <!-- ── Primary meta ── -->
-<title>{% block title %}Layosam – Solar Installation & Electrical Engineering in Ibadan{% endblock %}</title>
-<meta name="description" content="{% block meta_desc %}Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan. Free inspection. Call 08106690594 or WhatsApp now.{% endblock %}">
+<title>{% block title %}{{ seo_title or 'Layosam – Solar Installation & Electrical Engineering in Ibadan' }}{% endblock %}</title>
+<meta name="description" content="{% block meta_desc %}{{ seo_description or 'Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan. Free inspection. Call 08106690594 or WhatsApp now.' }}{% endblock %}">
 <meta name="theme-color" content="#09090f" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
 <meta name="robots" content="index, follow">
-<link rel="canonical" href="https://layosam.oranda.com{{ request.path }}">
+<link rel="canonical" href="{{ canonical_url or 'https://layosamtech.onrender.com' + request.path }}">
 
 <!-- ── Open Graph ── -->
-<meta property="og:title"       content="{% block og_title %}Layosam – Solar & Electrical Ibadan{% endblock %}">
-<meta property="og:description" content="{% block og_desc %}Expert solar installation, inverter setup and electrical engineering in Ibadan. Free inspection. Call 08106690594.{% endblock %}">
+<meta property="og:title"       content="{% block og_title %}{{ seo_title or 'Layosam – Solar & Electrical Ibadan' }}{% endblock %}">
+<meta property="og:description" content="{% block og_desc %}{{ seo_description or 'Expert solar installation, inverter setup and electrical engineering in Ibadan. Free inspection. Call 08106690594.' }}{% endblock %}">
 <meta property="og:type"        content="website">
-<meta property="og:url"         content="https://layosam.oranda.com{{ request.path }}">
+<meta property="og:url"         content="{{ canonical_url or 'https://layosamtech.onrender.com' + request.path }}">
 <meta property="og:site_name"   content="Layosam Electrical Engineering">
 <meta property="og:locale"      content="en_NG">
+<meta property="og:image"       content="{{ og_image or 'https://layosamtech.onrender.com/static/images/og-cover.jpg' }}">
+
+<meta name="twitter:card"        content="summary_large_image">
+<meta name="twitter:title"       content="{{ seo_title or 'Layosam – Solar & Electrical Ibadan' }}">
+<meta name="twitter:description" content="{{ seo_description or 'Expert solar installation, inverter setup and electrical engineering in Ibadan.' }}">
+<meta name="twitter:image"       content="{{ og_image or 'https://layosamtech.onrender.com/static/images/og-cover.jpg' }}">
 
 <!-- ── DNS prefetch for third-party origins ── -->
 <link rel="dns-prefetch" href="//fonts.googleapis.com">
@@ -93,7 +99,7 @@ nav{
   "@type": "LocalBusiness",
   "name": "Layosam Electrical Engineering & Solar Installation",
   "description": "Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan, Nigeria.",
-  "url": "https://layosam.oranda.com",
+  "url": "https://layosamtech.onrender.com",
   "telephone": "+2348106690594",
   "address": {
     "@type": "PostalAddress",

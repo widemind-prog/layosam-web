@@ -5,7 +5,8 @@ from datetime import datetime
 from functools import wraps
 
 from flask import (Flask, render_template, request, redirect,
-                   url_for, flash, session, jsonify, abort)
+                   url_for, flash, session, jsonify, abort,
+                   send_from_directory, Response)
 from supabase import create_client, Client
 from dotenv import load_dotenv
 import bleach
@@ -91,15 +92,31 @@ def delete_image_from_supabase(image_url: str):
 @app.route("/")
 def index():
     projects = get_projects(limit=6)
-    return render_template("index.html", projects=projects)
+    return render_template(
+        "index.html",
+        projects=projects,
+        seo_title="Layosam | Solar Installation & Electrical Services in Ibadan",
+        seo_description="Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan. Free inspection. Call 08106690594.",
+        canonical_url="https://layosamtech.onrender.com/"
+    )
 
 @app.route("/about")
 def about():
-    return render_template("about.html")
+    return render_template(
+        "about.html",
+        seo_title="About Us | Layosam Solar & Electrical – Ibadan",
+        seo_description="Learn about Layosam, Ibadan's trusted solar installation and electrical engineering company. Certified engineers, hundreds of completed projects.",
+        canonical_url="https://layosamtech.onrender.com/about"
+    )
 
 @app.route("/services")
 def services():
-    return render_template("services.html")
+    return render_template(
+        "services.html",
+        seo_title="Services | Solar, Inverter & Electrical Wiring – Layosam Ibadan",
+        seo_description="Solar panel installation, inverter & battery setup, house wiring, electrical repairs and more. Serving Ibadan and Oyo State.",
+        canonical_url="https://layosamtech.onrender.com/services"
+    )
 
 @app.route("/projects")
 def projects_page():
@@ -109,14 +126,24 @@ def projects_page():
     projects = get_projects(limit=limit + 1, offset=offset)
     has_next = len(projects) > limit
     projects = projects[:limit]
-    return render_template("projects.html",
-                           projects=projects,
-                           page=page,
-                           has_next=has_next)
+    return render_template(
+        "projects.html",
+        projects=projects,
+        page=page,
+        has_next=has_next,
+        seo_title="Completed Projects | Solar & Electrical Work – Layosam Ibadan",
+        seo_description="Browse completed solar installation and electrical projects by Layosam across Ibadan and Oyo State, Nigeria.",
+        canonical_url="https://layosamtech.onrender.com/projects"
+    )
 
 @app.route("/contact")
 def contact():
-    return render_template("contact.html")
+    return render_template(
+        "contact.html",
+        seo_title="Contact Layosam | Solar & Electrical Services Ibadan",
+        seo_description="Get in touch with Layosam for solar installation, inverter setup and electrical services in Ibadan. Call 08106690594 or WhatsApp us.",
+        canonical_url="https://layosamtech.onrender.com/contact"
+    )
 
 # ── API: latest projects (used by index.html JS) ──────────────────────────────
 @app.route("/api/projects")
@@ -273,6 +300,26 @@ def not_found(e):
 @app.errorhandler(500)
 def server_error(e):
     return render_template("404.html", error="Server error. Please try again."), 500
+
+
+# ── SEO: robots.txt ───────────────────────────────────────────────────────────
+@app.route('/robots.txt')
+def robots_txt():
+    return send_from_directory('static', 'robots.txt')
+
+# ── SEO: sitemap.xml ──────────────────────────────────────────────────────────
+@app.route('/sitemap.xml')
+def sitemap():
+    today = datetime.utcnow().date().isoformat()
+    pages = [
+        {'loc': url_for('index',        _external=True), 'lastmod': today, 'priority': '1.0'},
+        {'loc': url_for('services',     _external=True), 'lastmod': today, 'priority': '0.9'},
+        {'loc': url_for('projects_page',_external=True), 'lastmod': today, 'priority': '0.8'},
+        {'loc': url_for('contact',      _external=True), 'lastmod': today, 'priority': '0.7'},
+        {'loc': url_for('about',        _external=True), 'lastmod': today, 'priority': '0.6'},
+    ]
+    xml = render_template('sitemap.xml', pages=pages)
+    return Response(xml, mimetype='application/xml')
 
 if __name__ == "__main__":
     app.run(debug=True)
