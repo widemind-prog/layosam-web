@@ -301,7 +301,9 @@ def not_found(e):
 def server_error(e):
     return render_template("404.html", error="Server error. Please try again."), 500
 
-
+@app.route('/google0843481c2fb28a34.html')
+def google_verification():
+    return send_from_directory('static', 'google0843481c2fb28a34.html')
 # ── SEO: robots.txt ───────────────────────────────────────────────────────────
 @app.route('/robots.txt')
 def robots_txt():
