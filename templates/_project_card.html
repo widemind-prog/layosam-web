@@ -1,17 +1,29 @@
-{# _project_card.html — pass `project` and optional `wide=true` #}
-<div class="proj-card filterable-card {% if wide %}wide{% endif %}" data-cat="{{ project.category | default('') }}">
+{# _project_card.html
+   Pass: project (dict), wide (bool, optional), priority (bool, optional)
+   priority=true on the first/LCP image — sets fetchpriority=high and skips lazy
+#}
+<div class="proj-card filterable-card {% if wide %}wide{% endif %}"
+     data-cat="{{ project.category | default('') }}">
   {% if project.image_url %}
     <img class="proj-img"
          src="{{ project.image_url }}"
-         alt="{{ project.title }}"
-         loading="lazy"
+         alt="{{ project.title }} – {{ project.location }}"
+         width="800" height="600"
+         {% if priority %}
+           fetchpriority="high"
+           loading="eager"
+           decoding="sync"
+         {% else %}
+           loading="lazy"
+           decoding="async"
+         {% endif %}
          onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-    <div class="proj-ph" style="display:none">
+    <div class="proj-ph" style="display:none" aria-hidden="true">
       <span class="proj-ph-ico">📸</span>
       <span class="proj-ph-lbl">{{ project.title }}</span>
     </div>
   {% else %}
-    <div class="proj-ph">
+    <div class="proj-ph" aria-hidden="true">
       <span class="proj-ph-ico">📸</span>
       <span class="proj-ph-lbl">{{ project.title }}</span>
     </div>

@@ -424,6 +424,7 @@ h1.hero-h .hl{display:block;background:linear-gradient(92deg,var(--volt) 0%,#aac
     {% if projects %}
       {% for project in projects %}
         {% set wide = loop.first %}
+        {% set priority = loop.first %}
         {% include '_project_card.html' %}
       {% endfor %}
     {% else %}
@@ -431,10 +432,12 @@ h1.hero-h .hl{display:block;background:linear-gradient(92deg,var(--volt) 0%,#aac
       {% for i in range(1, 7) %}
       <div class="proj-card {% if i == 1 %}wide{% endif %}">
         <img class="proj-img" src="{{ url_for('static', filename='project/project' ~ i ~ '.jpg') }}"
-             alt="Project {{ i }}"
-             loading="lazy"
+             alt="Layosam electrical project {{ i }} – Ibadan"
+             width="800" height="600"
+             {% if i == 1 %}fetchpriority="high" loading="eager" decoding="sync"
+             {% else %}loading="lazy" decoding="async"{% endif %}
              onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-        <div class="proj-ph" style="display:none"><span class="proj-ph-ico">📸</span><span class="proj-ph-lbl">project{{ i }}.jpg</span></div>
+        <div class="proj-ph" style="display:none" aria-hidden="true"><span class="proj-ph-ico">📸</span><span class="proj-ph-lbl">project{{ i }}.jpg</span></div>
         <div class="proj-label">
           <span class="proj-loc">📍 Ibadan</span>
           <span class="proj-name">Electrical Project {{ i }}</span>

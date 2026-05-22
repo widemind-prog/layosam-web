@@ -34,6 +34,7 @@
   {% if projects %}
   <div class="proj-grid rev" style="grid-template-columns:1fr 1fr;">
     {% for project in projects %}
+      {% set priority = loop.first %}
       {% include '_project_card.html' %}
     {% endfor %}
   </div>

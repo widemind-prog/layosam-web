@@ -4,30 +4,52 @@
 
 /* ── Mobile nav drawer ── */
 (function () {
-  const burger = document.getElementById("nav-burger");
-  const drawer = document.getElementById("nav-drawer");
+  var burger = document.getElementById("nav-burger");
+  var drawer = document.getElementById("nav-drawer");
   if (!burger || !drawer) return;
   burger.addEventListener("click", function () {
-    const open = drawer.classList.toggle("open");
+    var open = drawer.classList.toggle("open");
     burger.classList.toggle("open", open);
-    burger.setAttribute("aria-expanded", open);
+    burger.setAttribute("aria-expanded", String(open));
+    drawer.setAttribute("aria-hidden", String(!open));
   });
-  // Close on link click
   drawer.querySelectorAll("a").forEach(function (a) {
     a.addEventListener("click", function () {
       drawer.classList.remove("open");
       burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
     });
+  });
+  // Close on Escape key
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && drawer.classList.contains("open")) {
+      drawer.classList.remove("open");
+      burger.classList.remove("open");
+      burger.setAttribute("aria-expanded", "false");
+      drawer.setAttribute("aria-hidden", "true");
+      burger.focus();
+    }
   });
 })();
 
 /* ── Scroll reveal ── */
 (function () {
-  const els = document.querySelectorAll(".rev");
-  const obs = new IntersectionObserver(function (entries) {
+  var els = document.querySelectorAll(".rev");
+  // Respect prefers-reduced-motion — skip animation, show instantly
+  var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReduced) {
+    els.forEach(function (el) { el.classList.add("in"); });
+    return;
+  }
+  var obs = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
       if (e.isIntersecting) {
         e.target.classList.add("in");
+        // Remove will-change after animation completes to free compositor layer
+        setTimeout(function () {
+          e.target.style.willChange = "auto";
+        }, 600);
         obs.unobserve(e.target);
       }
     });

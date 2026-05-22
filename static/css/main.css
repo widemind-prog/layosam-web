@@ -6,8 +6,25 @@
 /* ── RESET ── */
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
 html{scroll-behavior:smooth;}
-body{font-family:'DM Sans',sans-serif;background:#09090f;color:#e8eaf0;overflow-x:hidden;-webkit-font-smoothing:antialiased;}
+/* body opacity starts at 0 (set by critical inline CSS in <head>),
+   revealed by document.fonts.ready or 800ms timeout — kills FOUT. */
+body{
+  font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  background:#09090f;color:#e8eaf0;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+}
 a{text-decoration:none;color:inherit;}
+
+/* ── PERFORMANCE ───────────────────────────────────────────────────
+   contain:layout style — browser skips re-layout of sibling sections
+   when one section changes, improving INP and Total Blocking Time.
+   will-change only on elements that genuinely animate — adding it to
+   static elements wastes compositor layers and GPU memory.
+──────────────────────────────────────────────────────────────────── */
+section{contain:layout style;}
+.btn-wa,.btn-call,.sticky-wa,.sticky-call{will-change:box-shadow;}
+.brand-icon{will-change:opacity;}
+.rev{will-change:opacity,transform;}
 
 /* ── CSS VARIABLES ── */
 :root{
@@ -357,6 +374,24 @@ footer strong{color:#fff;}
   section{max-width:980px;margin-left:auto;margin-right:auto;width:100%;padding:80px 40px;}
   .page-hero{padding:100px 52px 80px;}
   .page-hero-content{margin:0 auto;}
+}
+
+
+/* ══ ACCESSIBILITY: prefers-reduced-motion ═══════════════
+   Users who set "reduce motion" in their OS get zero animation.
+   This is required for WCAG 2.1 AA and good UX.
+   PageSpeed / Lighthouse checks for this.
+══════════════════════════════════════════════════════════ */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:0.01ms !important;
+    animation-iteration-count:1 !important;
+    transition-duration:0.01ms !important;
+    scroll-behavior:auto !important;
+  }
+  .rev{opacity:1;transform:none;}
+  .btn-wa,.btn-call,.sticky-wa,.sticky-call{animation:none;will-change:auto;}
+  .brand-icon{animation:none;will-change:auto;}
 }
 
 /* ══ LIGHT THEME ══════════════════════════════════════════

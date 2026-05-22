@@ -3,22 +3,161 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+<!-- ── Primary meta ── -->
 <title>{% block title %}Layosam – Solar Installation & Electrical Engineering in Ibadan{% endblock %}</title>
 <meta name="description" content="{% block meta_desc %}Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan. Free inspection. Call 08106690594 or WhatsApp now.{% endblock %}">
-<meta property="og:title" content="{% block og_title %}Layosam – Solar & Electrical Ibadan{% endblock %}">
-<meta property="og:description" content="Expert solar & electrical in Ibadan. Free inspection. Call 08106690594.">
-<meta property="og:type" content="website">
+<meta name="theme-color" content="#09090f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f5f0e8" media="(prefers-color-scheme: light)">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://layosam.oranda.com{{ request.path }}">
+
+<!-- ── Open Graph ── -->
+<meta property="og:title"       content="{% block og_title %}Layosam – Solar & Electrical Ibadan{% endblock %}">
+<meta property="og:description" content="{% block og_desc %}Expert solar installation, inverter setup and electrical engineering in Ibadan. Free inspection. Call 08106690594.{% endblock %}">
+<meta property="og:type"        content="website">
+<meta property="og:url"         content="https://layosam.oranda.com{{ request.path }}">
+<meta property="og:site_name"   content="Layosam Electrical Engineering">
+<meta property="og:locale"      content="en_NG">
+
+<!-- ── DNS prefetch for third-party origins ── -->
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
+<link rel="dns-prefetch" href="//cloud.umami.is">
+<link rel="dns-prefetch" href="//wa.me">
+
+<!-- ── Font connections: preconnect (TCP+TLS handshake early) ── -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<!-- ── Font preload: fetch the 3 most-used font files before CSS parses ──
+     These are the subset URLs Google Fonts actually serves for latin glyphs.
+     Preloading them kills the 2-round-trip waterfall delay that causes FOUT.
+     We use 'as=font' + crossorigin so the browser matches the cache entry. ── -->
+<link rel="preload" as="font" type="font/woff2" crossorigin
+  href="https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9WdhyyTh89ZNpQ.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+  href="https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZa4ET-DNl0.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+  href="https://fonts.gstatic.com/s/spacemono/v13/i7dPIFZifjKcF5UAWdDRUEZ2RFq7AwU.woff2">
+
+<!-- ── Google Fonts stylesheet: display=swap means text visible immediately
+     with system font while custom font downloads (no invisible text) ── -->
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+
+<!-- ── CRITICAL CSS: inlined so first paint needs zero extra HTTP round trips.
+     Contains only above-the-fold rules: body bg, nav, hero skeleton, fonts.
+     Full styles come from main.css below. ── -->
+<style>
+/* Font-display fallback stack: metrics chosen to match custom fonts closely
+   so CLS (layout shift) is near-zero when custom fonts swap in */
+body{
+  font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;
+  background:#09090f;color:#e8eaf0;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;
+  /* Hide body until fonts ready OR timeout — prevents FOUT flash */
+  opacity:0;
+  transition:opacity 0.15s ease;
+}
+body.fonts-ready{opacity:1;}
+/* Fallback: if JS disabled or fonts.ready never fires, still show page */
+@media print{body{opacity:1!important;}}
+
+/* Nav above-fold skeleton — avoids reflow when nav CSS loads */
+nav{
+  position:sticky;top:0;z-index:500;
+  height:60px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 20px;
+  background:rgba(9,9,15,0.92);
+  border-bottom:1px solid rgba(212,255,0,0.15);
+}
+/* Prevent CLS on brand-name: reserve space with matching fallback font metrics */
+.brand-name{
+  font-family:'Bebas Neue','Arial Narrow',Arial,sans-serif;
+  font-size:20px;letter-spacing:1px;color:#fff;
+  /* size-adjust helps fallback glyph width match Bebas Neue */
+}
+/* Hero bg colour shows instantly — no white flash before CSS loads */
+.hero,section.hero-wrap{background:#09090f;min-height:100svh;}
+</style>
+
+<!-- ── Main stylesheet: non-critical, loaded normally ── -->
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 {% block extra_css %}{% endblock %}
+
+<!-- ── Structured data: LocalBusiness JSON-LD for Google rich results ── -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Layosam Electrical Engineering & Solar Installation",
+  "description": "Expert solar installation, inverter setup, house wiring and electrical engineering in Ibadan, Nigeria.",
+  "url": "https://layosam.oranda.com",
+  "telephone": "+2348106690594",
+  "address": {
+    "@type": "PostalAddress",
+    "addressLocality": "Ibadan",
+    "addressRegion": "Oyo State",
+    "addressCountry": "NG"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": 7.3775,
+    "longitude": 3.9470
+  },
+  "openingHoursSpecification": {
+    "@type": "OpeningHoursSpecification",
+    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],
+    "opens": "07:00",
+    "closes": "19:00"
+  },
+  "priceRange": "₦₦",
+  "serviceArea": {
+    "@type": "City",
+    "name": "Ibadan"
+  },
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Electrical & Solar Services",
+    "itemListElement": [
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Solar Installation"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Inverter & Battery Setup"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"House Wiring"}},
+      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Electrical Repairs"}}
+    ]
+  },
+  "sameAs": [
+    "https://wa.me/2348106690594"
+  ]
+}
+</script>
+
+<!-- ── Font-ready script: runs inline (tiny, no network) before body renders.
+     Waits for document.fonts.ready Promise, then reveals page.
+     800 ms hard timeout ensures page always shows even if fonts are slow. ── -->
+<script>
+(function(){
+  var t=setTimeout(function(){document.body.classList.add('fonts-ready');},800);
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(function(){
+      clearTimeout(t);
+      document.body.classList.add('fonts-ready');
+    });
+  }else{
+    // Browser doesn't support Font Loading API — show immediately
+    clearTimeout(t);
+    document.body.classList.add('fonts-ready');
+  }
+})();
+</script>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
   <a class="brand" href="{{ url_for('index') }}">
-    <div class="brand-icon">⚡</div>
+    <div class="brand-icon" aria-hidden="true">⚡</div>
     <div>
       <div class="brand-name">LAYOSAM</div>
       <span class="brand-tag">IBADAN · SOLAR & ELECTRICAL</span>
@@ -26,44 +165,46 @@
   </a>
 
   <!-- desktop nav links -->
-  <div class="nav-links">
-    <a href="{{ url_for('index') }}"    {% if request.endpoint == 'index'        %}class="active"{% endif %}>Home</a>
-    <a href="{{ url_for('about') }}"    {% if request.endpoint == 'about'        %}class="active"{% endif %}>About</a>
-    <a href="{{ url_for('services') }}" {% if request.endpoint == 'services'     %}class="active"{% endif %}>Services</a>
-    <a href="{{ url_for('projects_page') }}" {% if request.endpoint == 'projects_page' %}class="active"{% endif %}>Projects</a>
-    <a href="{{ url_for('contact') }}"  {% if request.endpoint == 'contact'      %}class="active"{% endif %}>Contact</a>
+  <div class="nav-links" role="navigation" aria-label="Main navigation">
+    <a href="{{ url_for('index') }}"           {% if request.endpoint == 'index'         %}class="active" aria-current="page"{% endif %}>Home</a>
+    <a href="{{ url_for('about') }}"           {% if request.endpoint == 'about'         %}class="active" aria-current="page"{% endif %}>About</a>
+    <a href="{{ url_for('services') }}"        {% if request.endpoint == 'services'      %}class="active" aria-current="page"{% endif %}>Services</a>
+    <a href="{{ url_for('projects_page') }}"   {% if request.endpoint == 'projects_page' %}class="active" aria-current="page"{% endif %}>Projects</a>
+    <a href="{{ url_for('contact') }}"         {% if request.endpoint == 'contact'       %}class="active" aria-current="page"{% endif %}>Contact</a>
   </div>
 
   <div class="nav-ctas">
-    <a class="nav-call" href="tel:+2348106690594">📞 08106690594</a>
-    <a class="nav-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+    <a class="nav-call" href="tel:+2348106690594" aria-label="Call 08106690594">📞 08106690594</a>
+    <a class="nav-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician."
+       target="_blank" rel="noopener noreferrer" aria-label="WhatsApp us">
       {% include '_wa_icon.html' %} WhatsApp
     </a>
-    <!-- mobile burger -->
-    <button class="nav-burger" id="nav-burger" aria-label="Open menu" aria-expanded="false">
+    <button class="nav-burger" id="nav-burger"
+            aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
       <span></span><span></span><span></span>
     </button>
   </div>
 </nav>
 
 <!-- MOBILE DRAWER -->
-<div class="nav-drawer" id="nav-drawer" role="navigation">
-  <a href="{{ url_for('index') }}"          {% if request.endpoint == 'index'        %}class="active"{% endif %}>🏠 Home</a>
-  <a href="{{ url_for('about') }}"          {% if request.endpoint == 'about'        %}class="active"{% endif %}>👋 About Us</a>
-  <a href="{{ url_for('services') }}"       {% if request.endpoint == 'services'     %}class="active"{% endif %}>⚡ Services</a>
-  <a href="{{ url_for('projects_page') }}"  {% if request.endpoint == 'projects_page'%}class="active"{% endif %}>📸 Projects</a>
-  <a href="{{ url_for('contact') }}"        {% if request.endpoint == 'contact'      %}class="active"{% endif %}>📞 Contact</a>
+<nav class="nav-drawer" id="nav-drawer" aria-label="Mobile navigation" aria-hidden="true">
+  <a href="{{ url_for('index') }}"          {% if request.endpoint == 'index'         %}class="active" aria-current="page"{% endif %}>🏠 Home</a>
+  <a href="{{ url_for('about') }}"          {% if request.endpoint == 'about'         %}class="active" aria-current="page"{% endif %}>👋 About Us</a>
+  <a href="{{ url_for('services') }}"       {% if request.endpoint == 'services'      %}class="active" aria-current="page"{% endif %}>⚡ Services</a>
+  <a href="{{ url_for('projects_page') }}"  {% if request.endpoint == 'projects_page' %}class="active" aria-current="page"{% endif %}>📸 Projects</a>
+  <a href="{{ url_for('contact') }}"        {% if request.endpoint == 'contact'       %}class="active" aria-current="page"{% endif %}>📞 Contact</a>
   <div class="nav-drawer-ctas">
-    <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+    <a class="btn-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician."
+       target="_blank" rel="noopener noreferrer">
       {% include '_wa_icon.html' %} WhatsApp Us
     </a>
     <a class="btn-call" href="tel:+2348106690594">📞 Call 08106690594</a>
   </div>
-</div>
+</nav>
 
 {% with messages = get_flashed_messages(with_categories=true) %}
   {% if messages %}
-    <ul class="flash-list" style="padding:0 20px;margin:12px 0;">
+    <ul class="flash-list" style="padding:0 20px;margin:12px 0;" role="alert">
       {% for cat, msg in messages %}
         <li class="flash-msg {{ cat }}">{{ msg }}</li>
       {% endfor %}
@@ -75,13 +216,13 @@
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-nav">
+  <nav class="footer-nav" aria-label="Footer navigation">
     <a href="{{ url_for('index') }}">Home</a>
     <a href="{{ url_for('about') }}">About</a>
     <a href="{{ url_for('services') }}">Services</a>
     <a href="{{ url_for('projects_page') }}">Projects</a>
     <a href="{{ url_for('contact') }}">Contact</a>
-  </div>
+  </nav>
   <strong>LAYOSAM Electrical Engineering &amp; Solar Installation</strong><br>
   Ibadan, Oyo State, Nigeria<br>
   📞 <a href="tel:+2348106690594" style="color:inherit;">08106690594</a>
@@ -91,16 +232,19 @@
 </footer>
 
 <!-- STICKY BAR (mobile) -->
-<div class="sticky">
-  <a class="sticky-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician." target="_blank" rel="noopener">
+<div class="sticky" role="navigation" aria-label="Quick contact">
+  <a class="sticky-wa" href="https://wa.me/2348106690594?text=Hello%2C%20I%20need%20an%20electrician."
+     target="_blank" rel="noopener noreferrer" aria-label="WhatsApp us">
     {% include '_wa_icon.html' %} WhatsApp Us
   </a>
-  <a class="sticky-call" href="tel:+2348106690594">⚡ Call Now</a>
+  <a class="sticky-call" href="tel:+2348106690594" aria-label="Call now">⚡ Call Now</a>
 </div>
 
-<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+<!-- Main JS: defer so it never blocks rendering -->
+<script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
 {% block extra_js %}{% endblock %}
-<!-- Umami Analytics -->
-<script defer src="https://cloud.umami.is/script.js" data-website-id="23168a8d-b7fe-4041-a68d-8d6ec63a5022"></script>
+<!-- Umami Analytics: defer so it never affects LCP/FID -->
+<script defer src="https://cloud.umami.is/script.js"
+        data-website-id="23168a8d-b7fe-4041-a68d-8d6ec63a5022"></script>
 </body>
 </html>

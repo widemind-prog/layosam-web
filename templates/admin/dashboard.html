@@ -30,7 +30,8 @@
   <div class="admin-proj-card">
     {% if p.image_url %}
       <img class="admin-proj-img" src="{{ p.image_url }}" alt="{{ p.title }}"
-           onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+         loading="lazy" decoding="async" width="400" height="225"
+         onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
       <div class="admin-proj-img-ph" style="display:none">📸</div>
     {% else %}
       <div class="admin-proj-img-ph">📸</div>

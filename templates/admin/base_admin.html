@@ -5,10 +5,28 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{% block title %}Admin{% endblock %} – Layosam</title>
 <meta name="robots" content="noindex, nofollow">
+<link rel="dns-prefetch" href="//fonts.googleapis.com">
+<link rel="dns-prefetch" href="//fonts.gstatic.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" crossorigin
+  href="https://fonts.gstatic.com/s/bebasneue/v14/JTUSjIg69CK48gW7PXoo9WdhyyTh89ZNpQ.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+  href="https://fonts.gstatic.com/s/dmsans/v15/rP2Hp2ywxg089UriCZa4ET-DNl0.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin
+  href="https://fonts.gstatic.com/s/spacemono/v13/i7dPIFZifjKcF5UAWdDRUEZ2RFq7AwU.woff2">
+<link rel="stylesheet"
+  href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap">
+<style>
+body{font-family:'DM Sans','Helvetica Neue',Arial,sans-serif;background:#09090f;color:#e8eaf0;overflow-x:hidden;-webkit-font-smoothing:antialiased;opacity:0;transition:opacity 0.15s ease;}
+body.fonts-ready{opacity:1;}
+@media print{body{opacity:1!important;}}
+</style>
 <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
 <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+<script>
+(function(){var t=setTimeout(function(){document.body.classList.add('fonts-ready');},800);if(document.fonts&&document.fonts.ready){document.fonts.ready.then(function(){clearTimeout(t);document.body.classList.add('fonts-ready');});}else{clearTimeout(t);document.body.classList.add('fonts-ready');}})();
+</script>
 </head>
 <body>
 <div class="admin-wrap">
